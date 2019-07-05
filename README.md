@@ -8,4 +8,5 @@ The training, testing and relevant statistics of GaMorNet is outlined in the fol
 ### Usage Info/Citation/Reference
 This repository was used in the work pertaining to the following paper:-
 "Galaxy Morphology Network (GaMorNet):  A Convolutional Neural Network used to study morphology andquenching in ∼100,000 SDSS and ∼20,000 CANDELS galaxies" , Ghosh et. al.
+
 If you use this code for any published work, please cite the above paper and include a link to this GitHub repository
