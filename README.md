@@ -6,7 +6,7 @@ The training, testing and relevant statistics of GaMorNet is outlined in the pap
 
 ## Usage Info/Citation/Reference
 This repository was used in the work pertaining to the following research article:-
-"Galaxy Morphology Network (GaMorNet):  A Convolutional Neural Network used to study morphology andquenching in ∼100,000 SDSS and ∼20,000 CANDELS galaxies" , Ghosh et. al.
+"Galaxy Morphology Network (GaMorNet):  A Convolutional Neural Network used to study morphology and quenching in ∼100,000 SDSS and ∼20,000 CANDELS galaxies", Ghosh et. al.
 
 If you use this code for any published work, please cite the above paper and include a link to this GitHub repository.
 
@@ -23,9 +23,9 @@ GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a 
 | 3.6.9  | 1.17.0  | 1.12.0  | 0.3.2  | 9.0.176 | 7.1.4 |
 | 3.6.9 | 1.17.0 | 1.13.1 | 0.3.2 | 10.0.130 | 7.6.0 |
 
-The last confifuration mentioned will lead to depreciation warnings and might lead to errors depedning on other Python Libraries installed on your machines. Thus, the first two configurations are the recommended configurations. 
+The last configuration mentioned will lead to deprecation warnings and might lead to errors depending on other Python Libraries installed on your machines. Thus, the first two configurations are the recommended configurations. 
 
-It is highly recommended to initiate a Python virtual environment (eg. using Anaconda) with the above mentioned versions of Python, Numpy, TF-gpu and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information of using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
+It is highly recommended to initiate a Python virtual environment (eg. using Anaconda) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
 
 * [Instructions for Installing Tensorflow](https://www.tensorflow.org/install)
 * [Instructions for Installing TFLearn](http://tflearn.org/installation/) Recommended way is to just do `pip install tflearn`
@@ -50,13 +50,40 @@ If all the above commands work, then you are all set. **If there warnings or err
 
 ## The Network
 
-### Design
+### Design -- [gamronet.py](gamornet.py)
 The file [gamronet.py](gamornet.py) contains the code that we use to create the GaMorNet model in TFLearn. *Note that this file will not run without further modification -- this is only meant to show what exact TFLearn functions we used to code GaMorNet*
 
-### Using our Trained Models
-In our paper, we outline how we train GaMorNet. These trained models can be accessed via http://www.astro.yale.edu/aghosh/gamornet.html or http://gamornet.ghosharitra.com . In order to use these trained models, we provide some example code in the file [gamornet_predict.py](gamornet_predict.py)
+### Using our Trained Models --- -- [gamronet_predict.py](/gamornet_predict/gamornet_predict.py)
+In our paper, we outline how we train GaMorNet. These trained models can be accessed via http://www.astro.yale.edu/aghosh/gamornet.html or http://gamornet.ghosharitra.com . In order to use these trained models, we provide some example code in the file [gamornet_predict.py](/gamornet_predict/gamornet_predict.py)
 
-To use the above file, first make sure that you have the following Python Libraries already installed besides Tensorflow and TFLearn :- numpy,pylab,astropy,math,time,multiprocessing
+For this demonstration, we will be using our final trained SDSS model to predict the classification of two randomly chosen SDSS g-band images stored in the directory [sdss_cutouts](/gamronet_predict/sdss_cutouts/). Positional information on these galaxies is available in the [info.txt](/gamronet_predict/sdss_cutouts/info.txt) file.
 
-Next, to run this file, we first need the trained models. To demonstrate 
+The following steps demonstrate what you need to do, to run the script successfully. 
 
+* Clone this GitHub Repository using the appropriate  https or ssh link
+    * ```git clone https://github.com/aritraghsh09/GaMorNet.git``` 
+    * OR
+    * ``` git clone git@github.com:aritraghsh09/GaMorNet.git```
+    
+* Make sure that you have the following Python Libraries already installed besides Tensorflow and TFLearn :- numpy,pylab,astropy, math, time,multiprocessing
+
+* Download the 3 model files using this ftp link ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/SDSS/tl/ and store these in the [gamornet_predict](/gamornet_predict/) directory
+
+* Run the [gamornet_predict](/gamornet_predict/gamornet_predict.py) script using ```python gamornet_predict.py```
+
+* The predicted probabilities for the test images should be written to an output file named predictions.txt
+
+
+To run predictions on other images than the ones supplied keep the following information in mind:-
+
+* GaMorNet-SDSS & GaMorNet-CANDELS were trained for square images of 167 pixels and 83 pixels respectively. If you are using our trained models, you need to make sure the cutouts you are using are of the same size. The code will still run if you use cutouts of a different size (as the input data is reshaped to the appropriate size) but will give you erroneous results. 
+
+* GaMorNet-SDSS & GaMorNet-CANDELS were trained for galaxies at z\~0 and z\~1 respectively. If you are using our trained models, you need to make sure the cutouts you are using are at similar redshifts. To perform predictions on galaxies at a substantially different z, you will need to retrain GaMorNet accordingly. 
+
+* GaMorNet-SDSS & GaMorNet-CANDELS were trained with g-band and H-band images respectively. If you are using our trained models, you need to make sure the galaxy images you are using are in nearby bands. To perform predictions on galaxies at a substantially blueshifted or redshifted band, you might need to retrain GaMorNet accordingly. 
+
+* To perform prediction on CANDELS images, you need to alter the following parameters in the code
+  * In the ```array_image``` function in [gamornet_predict.py](/gamornet_predict/gamornet_predict.py) alter the ```newshape``` argument to ```newshape=(83,83,1)```
+  * The input layer of the network needs to be changed to ```network = input_data(shape=[None, 83, 83, 1])```
+---
+## Important Things to Keep in Mind
