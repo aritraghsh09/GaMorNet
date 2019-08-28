@@ -27,8 +27,8 @@ The last confifuration mentioned will lead to depreciation warnings and might le
 
 It is highly recommended to initiate a Python virtual environment (eg. using Anaconda) with the above mentioned versions of Python, Numpy, TF-gpu and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration.
 
-*  a [Instructions for Installing Tensorflow][https://www.tensorflow.org/install]
-*  a [Instructions for Installing TFLearn][http://tflearn.org/installation/] Recommended way is to just do `pip install tflearn`
+[Instructions for Installing Tensorflow][https://www.tensorflow.org/install]
+[Instructions for Installing TFLearn][http://tflearn.org/installation/] Recommended way is to just do `pip install tflearn`
 
 Once you are sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive session to verify the installation. 
 
@@ -44,7 +44,7 @@ print(sess.run(a + b))
 import tflearn as tfl
 ```
 
-**If all the above commands work, then you are all set. If there warnings or erros, please check to make sure that you have the recommended versions of critical libraries according to the table above**
+If all the above commands work, then you are all set. **If there warnings or errors, please check to make sure that you have the recommended versions of critical libraries according to the table above**
 
 ---
 
