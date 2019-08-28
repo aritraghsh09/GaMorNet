@@ -2,6 +2,7 @@
 #  gamornet.py
 #  This file is simply meant to show the TFLearn functions we use to build GaMorNet. 
 #  The commented numbers refer to layer numbers in Table. 3 of the paper
+#  -----------------------------------------------
 #  THIS FILE IS NOT MEAN TO BE RUN WITHOUT MODIFICATIONS. PLEASE REFER TO THE README OF THIS REPOSITROY FOR MORE INFO
 ##################################################
 
