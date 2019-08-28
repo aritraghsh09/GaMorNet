@@ -4,7 +4,7 @@ GaMorNet is a Convolutional Neural Network based on AlexNet to classify galaxies
 
 The training, testing and relevant statistics of GaMorNet is outlined in the paper mentioned in the next section. Please refer to the relevant sections of the paper for details about the training and transfer learning methods. 
 
-### Usage Info/Citation/Reference
+## Usage Info/Citation/Reference
 This repository was used in the work pertaining to the following research article:-
 "Galaxy Morphology Network (GaMorNet):  A Convolutional Neural Network used to study morphology andquenching in ∼100,000 SDSS and ∼20,000 CANDELS galaxies" , Ghosh et. al.
 
@@ -14,7 +14,7 @@ This code is being made available under a GNU General Public License v3.0. Pleas
 
 ---
 
-### What do you need to run GaMorNet?
+## What do you need to run GaMorNet?
 GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a high-level API for [Tensorflow](https://www.tensorflow.org/). GaMorNet has been tested to work with the following versions of different libraries mentioned below.
 
 | Python  |  Numpy | TF-gpu  |  TFLearn  | CUDA  | cuDNN | 
@@ -48,6 +48,13 @@ If all the above commands work, then you are all set. **If there warnings or err
 
 ---
 
+## The Network
 
+### Design
+The file [gamronet.py](gamornet.py) contains the code that we use to create the GaMorNet model in TFLearn. *Note that this file will not run without further modification -- this is only meant to show what exact TFLearn functions we used to code GaMorNet*
 
+### Using our Trained Models
+In our paper, we outline how we train GaMorNet. These trained models can be accessed via http://www.astro.yale.edu/aghosh/gamornet.html or http://gamornet.ghosharitra.com . In order to use these trained models, we provide some example code in the file [gamornet_use_trained.py](gamornet_used_trained.py)
+
+This 
 
