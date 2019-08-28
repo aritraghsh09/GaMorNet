@@ -30,7 +30,7 @@ start_timestamp = time.time() #to keep track of the time it takes to load the da
 
 #Paths & Global variables
 dataPath = './sdss_cutouts/' #Folder with the images to be tested 
-modelLoadPath = #Path to model file you are using to make the predictions
+modelLoadPath = './check-1546293'#Path to model file you are using to make the predictions
 OutFilePath = './predictions.txt' #Output file containing the predictions by GaMorNet for each input image
 
 #To optimize RAM usage while performing prediction on a large number of images, We run the data in batches through the netwowk and also load the data in parallel. The following two parameters deal with this./
