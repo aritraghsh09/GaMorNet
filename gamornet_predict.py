@@ -1,9 +1,9 @@
-######################################
-#	gamornet_predict.py
+########################################
+#  gamornet_predict.py
 #
-# This script is meant to use the trained models to get predictions on real galaxies.
-#	This script stores the prediction probabilites for each bin/classification in a file. 
-# --------
+#  This script is meant to use the trained models to get predictions on real galaxies.
+#  This script stores the prediction probabilites for each bin/classification in a file. 
+# --------------------------------------
 # THIS SCRIPT DOES NOT RUN BY ITSELF. TO SEE HOW TO RUN THIS SCRIPT, REFER TO THE README OF THIS REPOSITORY. 
 ########################################
 
@@ -20,7 +20,8 @@ import math
 import time
 from multiprocessing import Pool
 
-start_timestamp = time.time()
+ 
+start_timestamp = time.time() #to keep track of the time it takes to load the data
 
 #Paths & GLOBAL VARIABLES
 dataPath = '/gpfs/loomis/project/fas/urry/ag2422/data/sdss_btr_cutouts/'
