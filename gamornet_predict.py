@@ -19,12 +19,11 @@ from astropy.io import fits
 import math
 import time
 from multiprocessing import Pool
-
  
 start_timestamp = time.time() #to keep track of the time it takes to load the data
 
 #Paths & GLOBAL VARIABLES
-dataPath = '/gpfs/loomis/project/fas/urry/ag2422/data/sdss_btr_cutouts/'
+dataPath = # Point this to the relevant folder with the cutouts
 modelLoadPath = '/gpfs/loomis/project/fas/urry/ag2422/galnet_runs/run_sdssg_2/check-1125600'  #Path which has the model to be loaded for transfer learning. 
 OutFilePath = '/gpfs/loomis/project/fas/urry/ag2422/galnet_runs/run_sdssg_3/preds_2_all.txt'
 
