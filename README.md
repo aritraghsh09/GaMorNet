@@ -95,5 +95,17 @@ To run predictions on other images than the ones supplied keep the following inf
 * To perform prediction on CANDELS images, you need to alter the following parameters in the code
   * In the ```array_image``` function in [gamornet_predict.py](/gamornet_predict/gamornet_predict.py) alter the ```newshape``` argument to ```newshape=(83,83,1)```
   * The input layer of the network needs to be changed to ```network = input_data(shape=[None, 83, 83, 1])```
+  * You need to download the appropriate CANDELS trained models instead of the SDSS models mentioned above
 ---
 ## Important Things to Keep in Mind
+
+
+---
+## Sub-Directory structure 
+The Base Directory for all the models is 
+
+After that the different models are arranged as follows:-
+* GaMorNet-S model trained only on simulations &rightarrow; /SDSS/sim\textunderscore trained/
+* GaMorNet-S model trained on simulations and then transfer learned on real data &rightarrow; /SDSS/tl/
+* GaMorNet-C model trained only on simulations &rightarrow; /CANDELS/sim\textunderscore trained/
+* GaMorNet-C model trained on simulations and then transfer learned on real data &rightarrow; /CANDELS/tl/
