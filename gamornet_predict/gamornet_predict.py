@@ -38,7 +38,7 @@ BATCH_SIZE = 1  #Number of images to be fed in a single batch
 NUM_THREADS = 1  #Number of threads to be initiated while loading the data
 
 #Details of images to be fed in
-gal_para = plt.genfromtxt(dataPath + "info.txt", usecols=(0,1), dtype=[('file_name', object),('ObjID',np.int64)], skip_header=1)
+gal_para = plt.genfromtxt(dataPath + "info.txt", usecols=(0,1), names=True, dtype=None, encoding=None)
 
 #The array_image function is to help return an array of images on which the network will perform prediction
 def array_image(i):
