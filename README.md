@@ -101,7 +101,7 @@ To run predictions on other images than the ones supplied keep the following inf
 
 
 ---
-## Sub-Directory structure 
+## Where are all the Model Files? 
 The Base Directory for all the models is 
 
 After that the different models are arranged as follows:-
@@ -109,3 +109,6 @@ After that the different models are arranged as follows:-
 * GaMorNet-S model trained on simulations and then transfer learned on real data &rightarrow; /SDSS/tl/
 * GaMorNet-C model trained only on simulations &rightarrow; /CANDELS/sim\textunderscore trained/
 * GaMorNet-C model trained on simulations and then transfer learned on real data &rightarrow; /CANDELS/tl/
+
+
+**For other products of the public data release, please refer to the Appendix of the paper or head to [this link](www.astro.yale.edu/aghosh/gamornet.html) or [this link](http://gamornet.ghosharitra.com). 
