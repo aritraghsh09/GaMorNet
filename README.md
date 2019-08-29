@@ -53,7 +53,7 @@ If all the above commands work, then you are all set. **If there warnings or err
 ### Design -- [gamronet.py](gamornet.py)
 The file [gamronet.py](gamornet.py) contains the code that we use to create the GaMorNet model in TFLearn. *Note that this file will not run without further modification -- this is only meant to show what exact TFLearn functions we used to code GaMorNet*
 
-### Using our Trained Models --- -- [gamronet_predict.py](/gamornet_predict/gamornet_predict.py)
+### Using our Trained Models --- [gamronet_predict.py](/gamornet_predict/gamornet_predict.py)
 In our paper, we outline how we train GaMorNet. These trained models can be accessed via http://www.astro.yale.edu/aghosh/gamornet.html or http://gamornet.ghosharitra.com . In order to use these trained models, we provide some example code in the file [gamornet_predict.py](/gamornet_predict/gamornet_predict.py)
 
 For this demonstration, we will be using our final trained SDSS model to predict the classification of two randomly chosen SDSS g-band images stored in the directory [sdss_cutouts](/gamronet_predict/sdss_cutouts/). Positional information on these galaxies is available in the [info.txt](/gamronet_predict/sdss_cutouts/info.txt) file.
