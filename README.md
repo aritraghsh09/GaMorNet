@@ -27,12 +27,17 @@ GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a 
 
 The last configuration mentioned will lead to deprecation warnings and might lead to errors depending on other Python Libraries installed on your machines. Thus, the first two configurations are the recommended configurations. 
 
-It is highly recommended to initiate a Python virtual environment (eg. using Anaconda) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
+Steps to run GaMorNet:-
+
+* It is highly recommended to initiate a Python virtual environment (eg. using Anaconda) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
 
 * [Instructions for Installing Tensorflow](https://www.tensorflow.org/install)
+
 * [Instructions for Installing TFLearn](http://tflearn.org/installation/) Recommended way is to just do `pip install tflearn`
 
-Once you are sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive session to verify the installation. 
+* Now the GaMorNet python scripts should executable
+
+To make sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive session to verify the installation. 
 
 ```
 import tensorflow as tf
