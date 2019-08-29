@@ -53,13 +53,13 @@ import tflearn as tfl
 
 ## The Network
 
-### Design -- [gamronet.py](gamornet.py)
-The file [gamronet.py](gamornet.py) contains the code that we use to create the GaMorNet model in TFLearn. *Note that this file will not run without further modification -- this is only meant to show what exact TFLearn functions we used to code GaMorNet*
+### Design -- [gamornet.py](gamornet.py)
+The file [gamornet.py](gamornet.py) contains the code that we use to create the GaMorNet model in TFLearn. *Note that this file will not run without further modification -- this is only meant to show what exact TFLearn functions we used to code GaMorNet*
 
-### Using our Trained Models --- [gamronet_predict.py](/gamornet_predict/gamornet_predict.py)
+### Using our Trained Models --- [gamornet_predict.py](/gamornet_predict/gamornet_predict.py)
 In our paper, we outline how we train GaMorNet. These trained models can be accessed via http://www.astro.yale.edu/aghosh/gamornet.html or http://gamornet.ghosharitra.com . In order to use these trained models, we provide some example code in the file [gamornet_predict.py](/gamornet_predict/gamornet_predict.py)
 
-For this demonstration, we will be using our final trained SDSS model to predict the classification of two randomly chosen SDSS g-band images stored in the directory [sdss_cutouts](/gamronet_predict/sdss_cutouts/). Positional information on these galaxies is available in the [info.txt](/gamronet_predict/sdss_cutouts/info.txt) file.
+For this demonstration, we will be using our final trained SDSS model to predict the classification of two randomly chosen SDSS g-band images stored in the directory [sdss_cutouts](/gamornet_predict/sdss_cutouts/). Positional information on these galaxies is available in the [info.txt](/gamornet_predict/sdss_cutouts/info.txt) file.
 
 The following steps demonstrate what you need to do, to run the script successfully. 
 
@@ -98,9 +98,9 @@ To run predictions on other images than the ones supplied keep the following inf
 * To perform prediction on CANDELS images, you need to alter the following parameters in the code
   * In the ```array_image``` function in [gamornet_predict.py](/gamornet_predict/gamornet_predict.py) alter the ```newshape``` argument to ```newshape=(83,83,1)```
   * The input layer of the network needs to be changed to ```network = input_data(shape=[None, 83, 83, 1])```
-  * You need to download the appropriate CANDELS trained models instead of the SDSS models mentioned above
----
-## Important Things to Keep in Mind
+  * You need to download the appropriate CANDELS trained models instead of the SDSS models mentioned above  
+  
+### (Re)Training GaMorNet -- [gamornet_train.py](/gamornet_train/gamornet_train.py)
 
 
 ---
