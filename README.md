@@ -68,6 +68,14 @@ The following steps demonstrate what you need to do, to run the script successfu
 * Make sure that you have the following Python Libraries already installed besides Tensorflow and TFLearn :- numpy,pylab,astropy, math, time,multiprocessing
 
 * Download the 3 model files using this ftp link ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/SDSS/tl/ and store these in the [gamornet_predict](/gamornet_predict/) directory
+   * You can copy & paste the above ftp link into your browser and them manually download and place the relevant files in the correct directory.
+   * OR use the following commands using a terminal
+   * ```ftp ftp.astro.yale.edu```
+   * If you are prompted for a username, enter ```anonymous``` and keep the password field blank
+   * After logging in, navigate to the appropirate directory using ```cd pub/aghosh/gamornet/trained_models/SDSS/tl/```
+   * ```get check-1546293.meta```
+   * ```get check-1546293.index```
+   * ```get check-1546293.data-00000-of-00001```
 
 * Run the [gamornet_predict](/gamornet_predict/gamornet_predict.py) script using ```python gamornet_predict.py```
 
