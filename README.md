@@ -23,7 +23,7 @@ GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a 
 | 3.6.9  | 1.17.0  | 1.12.0  | 0.3.2  | 9.0.176 | 7.1.4 |
 | 3.6.9 | 1.17.0 | 1.13.1 | 0.3.2 | 10.0.130 | 7.6.0 |
 
-**The first configuration is what GaMorNet was originially developed in and thus is the most stable; however substantial testing has also been performed with the other two configurations**. The last configuration mentioned will lead to deprecation warnings and might also lead to errors depending on other Python Libraries installed on your machine. 
+**The first configuration is what GaMorNet was originially developed in and thus is the most stable; however substantial testing has also been performed with the other two configurations**. It is known that the last configuration mentioned leads to some Tensorflow depreciation warnings.
 
 Steps to install GaMorNet dependencies:-
 
@@ -33,9 +33,7 @@ Steps to install GaMorNet dependencies:-
 
 * [Instructions for Installing TFLearn](http://tflearn.org/installation/) Recommended way is to just do `pip install tflearn`
 
-* Now the GaMorNet python scripts should executable
-
-To make sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive session to verify the installation. 
+* To make sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive session to verify the installation. 
 
 ```
 import tensorflow as tf
@@ -49,7 +47,7 @@ print(sess.run(a + b))
 import tflearn as tfl
 ```
 
-If all the above commands work, then you are all set. **If there warnings or errors, please check to make sure that you have the recommended versions of critical libraries according to the table above**
+* If all the above commands work, then you are all set. **If there warnings or errors, please check to make sure that you have the recommended versions of critical libraries according to the table above**
 
 ---
 
