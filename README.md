@@ -23,6 +23,8 @@ GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a 
 | 3.6.9  | 1.17.0  | 1.12.0  | 0.3.2  | 9.0.176 | 7.1.4 |
 | 3.6.9 | 1.17.0 | 1.13.1 | 0.3.2 | 10.0.130 | 7.6.0 |
 
+**The first configuration is what GaMorNet was originially and thus is most stable; however substantial testing has also been performed with the other two configurations**
+
 The last configuration mentioned will lead to deprecation warnings and might lead to errors depending on other Python Libraries installed on your machines. Thus, the first two configurations are the recommended configurations. 
 
 It is highly recommended to initiate a Python virtual environment (eg. using Anaconda) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
