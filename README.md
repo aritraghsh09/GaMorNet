@@ -27,7 +27,7 @@ GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a 
 
 Steps to install GaMorNet dependencies:-
 
-* It is highly recommended to initiate a Python virtual environment (eg. using Anaconda) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
+* It is highly recommended to initiate a Python virtual environment (eg. using [Anaconda](https://www.anaconda.com/distribution/)) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
 
 * [Instructions for Installing Tensorflow](https://www.tensorflow.org/install)
 
@@ -70,7 +70,7 @@ The following steps demonstrate what you need to do, to run the script successfu
     
 * Make sure that you have the following Python Libraries already installed besides Tensorflow and TFLearn :- numpy,pylab,astropy, math, time,multiprocessing
 
-* Download the 3 model files using this ftp link ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/SDSS/tl/ and store these in the [gamornet_predict](/gamornet_predict/) directory
+* Download the 3 model files using this ftp link ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/SDSS/tl/ and **store these in the [gamornet_predict](/gamornet_predict/) directory**
    * You can copy & paste the above ftp link into your browser and them manually download and place the relevant files in the correct directory.
    * OR use the following commands using a terminal
    * `cd GaMorNet/gamornet_predict/`
@@ -101,7 +101,50 @@ To run predictions on other images than the ones supplied keep the following inf
   * You need to download the appropriate CANDELS trained models instead of the SDSS models mentioned above  
   
 ### (Re)Training GaMorNet -- [gamornet_train.py](/gamornet_train/gamornet_train.py)
+In our paper, we outline how we first train GaMorNet on simulated images and then transfer-learn (i.e. retrain the network) on real images. 
 
+The script, [gamornet_train.py](/gamornet_train/gamornet_train.py) is meant to demonstrate how GaMorNet can be trained. For demonstrating this, we will be using 5 simulated SDSS images from our sample. These images are stored in the floder [simulated_images](/gamornet_train/simulated_images/). 
+
+*Note that the script is set up to train for 5 epochs; use 3 images for training and 2 for validation. This is for demonstration purposes and will not lead to any useful results. You need to use much larger number of simulated images (~100,000) and train for many more epochs.(~500)*
+
+The following steps demonstrate what you need to do, to run the script successfully. 
+
+* Clone this GitHub Repository using the appropriate  https or ssh link
+    * ```git clone https://github.com/aritraghsh09/GaMorNet.git``` 
+    * OR
+    * ``` git clone git@github.com:aritraghsh09/GaMorNet.git```
+    
+* Make sure that you have the following Python Libraries already installed besides Tensorflow and TFLearn :- numpy,pylab,astropy, math, time,multiprocessing
+
+* Run the script [gamornet_train.py](/gamornet_train/gamornet_train.py) using ```python gamornet_train.py'''. 
+
+* The model file will be stored as 3 files named checkpoint-5.meta, checkpoint-5.index, checkpoint-5.data-00000-of-00001 in the /gamornet_train/ directory. The number 5 indicates that the model was trained for 5 epochs.
+
+
+#### To retrain starting from one of our models
+In this demo., we will be retraining GaMorNet using the above mentioned simulated images starting from our final SDSS model. *Retraining our final model on simulated images doesn't make any scientific sense and is just for demonstration purposes.* 
+
+* Download the 3 model files using this ftp link ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/SDSS/tl/ and **store these in the [gamornet_train](/gamornet_train/) directory**
+   * You can copy & paste the above ftp link into your browser and them manually download and place the relevant files in the correct directory.
+   * OR use the following commands using a terminal
+   * `cd GaMorNet/gamornet_train/`
+   * `ftp ftp.astro.yale.edu`
+   * If you are prompted for a username, enter ```anonymous``` and keep the password field blank
+   * After logging in, navigate to the appropirate directory using ```cd pub/aghosh/gamornet/trained_models/SDSS/tl/```
+   * `get check-1546293.meta`
+   * `get check-1546293.index`
+   * `get check-1546293.data-00000-of-00001`
+   * `quit`
+
+* Uncomment Line #138 in the GaMorNet code ``` #model.load(modelLoadPath+"check-1546293")```
+
+* If you want to freeze/lock some layers during training, add the ```trainable=False``` argument to the layer you want to lock. For eg. to lock Layer 8, uncomment the following line ```#network = conv_2d(network, 384, 3, activation='relu',trainable=False)  ``` and **comment out the original layer 8 (Line#105)**
+
+* If you don't want load some layers from the model and want to initialize these from scratch, add the ```restore=False``` argument to the layer you don't want to load. For eg. to not load Layer 13, uncomment the following line ``` #network = fully_connected(network, 4096, activation='tanh',restore=False)``` and **comment out the original layer 13 (Line#115)**
+
+* Run the script [gamornet_train.py](/gamornet_train/gamornet_train.py) using ```python gamornet_train.py'''. 
+
+* The model file will be stored as 3 files named checkpoint-1546298.meta, checkpoint-1546298.index, checkpoint-1546298.data-00000-of-00001 in the /gamornet_train/ directory. The number 1546298 indicates that the model was trained for 5 epochs since 1546293
 
 ---
 ## Where are all the Model Files? 
