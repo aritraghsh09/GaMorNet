@@ -42,7 +42,7 @@ NUM_FILES_TEST = 10000  #Number of files you wish to use for validation. Files a
 
 
 #Details of the images being fed in
-gal_para = plt.genfromtxt(dataPath + "sim_para.txt", names=True, dtype=None, encoding=None)
+gal_para = plt.genfromtxt(dataPath + "sim_para.txt", skip_header=11,names=True, dtype=None, encoding=None)
 disk_bulge_mag = gal_para["Inte_Mag"] - gal_para["Inte_Mag_2"] #difference between the integrated magnitudes of disk and bulge components
 
 
