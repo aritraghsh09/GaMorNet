@@ -135,7 +135,7 @@ model = tflearn.DNN(network, checkpoint_path=modelSavePath, max_checkpoints=1, t
 #Optional Step to Load a Model in case you are not training from scratch. 
 #Typically, the modelLoadPath should end with something like `check-123456'. By setting it as such, all the 3 files .meta, .index and .data are read in.
 
-#model.load(modelLoadPath)
+#model.load(modelLoadPath+"check-1546293")
 
 #Final Training Step
 #n_epoch controls the number of epochs of training
