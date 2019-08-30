@@ -31,14 +31,14 @@ start_timestamp = time.time() #to keep track of the time it takes to load the da
 #Paths & Global variables
 dataPath = './simulated_images/' #Folder with the images to be trained on 
 modelLoadPath = './' #Path to model file from where you want to start re-training [NOT APPLICABLE IF YOU WANT TO START TRAINING FROM SCRATCH]
-modelSavePath = './' #Path to save the final model file
+modelSavePath = './checkpoint' #Path to save the final model file
 
 #To optimize RAM usage while training on a large number of images, we load the data in parallel.
-NUM_THREADS = 10
+NUM_THREADS = 1
 
 #The following two parameters help to split the training data into a training set and a validation set.
-NUM_FILES_TOTAL = 100000 #Total Number of Files
-NUM_FILES_TEST = 10000  #Number of files you wish to use for validation. Files at the beginning of the naming sequence will be used for testing and the rest for training.
+NUM_FILES_TOTAL = 5 #Total Number of Files
+NUM_FILES_TEST = 2  #Number of files you wish to use for validation. Files at the beginning of the naming sequence will be used for testing and the rest for training.
 
 
 #Details of the images being fed in
@@ -68,14 +68,14 @@ def array_target(i):
 
 	target_vect = [0]*3 #Target vector to be returned
 
-        if (disk_bulge_mag[i] < -0.22):
-                target_vect[0] = 1         #disk
-        elif ( -0.22 <=  disk_bulge_mag[i] <= 0.22):
-                target_vect[1] = 1         #neither
-        else:
-                target_vect[2] = 1         #bulge
+	if (disk_bulge_mag[i] < -0.22):
+		target_vect[0] = 1         #disk
+	elif ( -0.22 <=  disk_bulge_mag[i] <= 0.22):
+		target_vect[1] = 1         #neither
+	else:
+		target_vect[2] = 1         #bulge
 
-        return target_vect
+	return target_vect
 
 #Now, we create a few arrays using miltiple threads to speed up the process of data-loading
 pl = Pool(NUM_THREADS)
