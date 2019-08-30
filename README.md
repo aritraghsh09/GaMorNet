@@ -103,7 +103,7 @@ To run predictions on other images than the ones supplied keep the following inf
 ### (Re)Training GaMorNet -- [gamornet_train.py](/gamornet_train/gamornet_train.py)
 In our paper, we outline how we first train GaMorNet on simulated images and then transfer-learn (i.e. retrain the network) on real images. 
 
-The script, [gamornet_train.py](/gamornet_train/gamornet_train.py) is meant to demonstrate how GaMorNet can be trained. For demonstrating this, we will be using 5 simulated SDSS images from our sample. These images are stored in the floder [simulated_images](/gamornet_train/simulated_images/). 
+The script, [gamornet_train.py](/gamornet_train/gamornet_train.py) is meant to demonstrate how GaMorNet can be trained. For demonstrating this, we will be using 5 simulated SDSS images from our sample. These images are stored in the floder [simulated_images](/gamornet_train/simulated_images/). The parameters used to simulate these galaxies is stored in the file [sim_para.txt](/gamornet_train/simulated_images/sim_para.txt). Using this file, we deduce the correct classification for each galaxy by using the integrated magnitudes of the disk and bulge for each galaxy. 
 
 *Note that the script is set up to train for 5 epochs; use 3 images for training and 2 for validation. This is for demonstration purposes and will not lead to any useful results. You need to use much larger number of simulated images (~100,000) and train for many more epochs.(~500)*
 
