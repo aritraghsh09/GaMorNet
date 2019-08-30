@@ -1,6 +1,6 @@
 #######################################################################################################################################
 #This file has the parameters for the 5 supplied simulated images wherein each image has a disk and bulge component.
-#Each row has the details of the corresponding image in ascending order with the first data row corresponding to output_img_1.fits
+#Each row has the details of the corresponding image in ascending order with the first data row corresponding to output_img_0.fits
 #The _2 parameters correspond to the parameters of the bulge component
 #sersic_idx --> Sersic Index
 #R_e --> effective radius
