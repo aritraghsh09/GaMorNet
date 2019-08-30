@@ -17,7 +17,7 @@ This code is being made available under a GNU General Public License v3.0. Pleas
 ## What do you need to run GaMorNet?
 GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a high-level API for [Tensorflow](https://www.tensorflow.org/). GaMorNet has been tested to work with the following versions of different libraries mentioned below.
 
-| Python  |  Numpy | TF-gpu  |  TFLearn  | CUDA  | cuDNN | 
+| Python  |  Numpy | TensorFlow-gpu  |  TFLearn  | CUDA  | cuDNN | 
 |---|---|---|---|---| --- |
 | 2.7.14 | 1.16.14 | 1.12.0 | 0.3.2 | 9.0.176 | 7.1.4 |
 | 3.6.9  | 1.17.0  | 1.12.0  | 0.3.2  | 9.0.176 | 7.1.4 |
