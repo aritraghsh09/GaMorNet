@@ -23,7 +23,7 @@ GaMorNet was coded in Python using [TFLearn](http://tflearn.org/) which is a hig
 | 3.6.9  | 1.17.0  | 1.12.0  | 0.3.2  | 9.0.176 | 7.1.4 |
 | 3.6.9 | 1.17.0 | 1.13.1 | 0.3.2 | 10.0.130 | 7.6.0 |
 
-**The first configuration is what GaMorNet was originially developed in and thus is the most stable; however substantial testing has also been performed with the other two configurations**. It is known that the last configuration mentioned leads to some Tensorflow depreciation warnings.
+**The first configuration is what GaMorNet was originally developed in and thus is the most stable; however substantial testing has also been performed with the other two configurations**. It is known that the last configuration mentioned leads to some Tensorflow depreciation warnings.
 
 Steps to install GaMorNet dependencies:-
 
@@ -46,6 +46,7 @@ Steps to install GaMorNet dependencies:-
    * To make sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive Python session to verify the installation. 
 
    ```
+   python
    import tensorflow as tf
    hello = tf.constant('Hello, TensorFlow!')
    sess = tf.Session()
@@ -87,7 +88,7 @@ The following steps demonstrate what you need to do, to run the script successfu
    * `cd GaMorNet/gamornet_predict/`
    * `ftp ftp.astro.yale.edu`
    * If you are prompted for a username, enter ```anonymous``` and keep the password field blank
-   * After logging in, navigate to the appropirate directory using ```cd pub/aghosh/gamornet/trained_models/SDSS/tl/```
+   * After logging in, navigate to the appropriate directory using ```cd pub/aghosh/gamornet/trained_models/SDSS/tl/```
    * `get check-1546293.meta`
    * `get check-1546293.index`
    * `get check-1546293.data-00000-of-00001`
@@ -114,7 +115,7 @@ To run predictions on other images than the ones supplied keep the following inf
 ### (Re)Training GaMorNet -- [gamornet_train.py](/gamornet_train/gamornet_train.py)
 In our paper, we outline how we first train GaMorNet on simulated images and then transfer-learn (i.e. retrain the network) on real images. 
 
-The script, [gamornet_train.py](/gamornet_train/gamornet_train.py) is meant to demonstrate how GaMorNet can be trained. For demonstrating this, we will be using 5 simulated SDSS images from our sample. These images are stored in the floder [simulated_images](/gamornet_train/simulated_images/). The parameters used to simulate these galaxies is stored in the file [sim_para.txt](/gamornet_train/simulated_images/sim_para.txt). Using this file, we deduce the correct classification for each galaxy by using the integrated magnitudes of the disk and bulge for each galaxy. 
+The script, [gamornet_train.py](/gamornet_train/gamornet_train.py) is meant to demonstrate how GaMorNet can be trained. For demonstrating this, we will be using 5 simulated SDSS images from our sample. These images are stored in the folder [simulated_images](/gamornet_train/simulated_images/). The parameters used to simulate these galaxies is stored in the file [sim_para.txt](/gamornet_train/simulated_images/sim_para.txt). Using this file, we deduce the correct classification for each galaxy by using the integrated magnitudes of the disk and bulge for each galaxy. 
 
 *Note that the script is set up to train for 5 epochs; use 3 images for training and 2 for validation. This is for demonstration purposes and will not lead to any useful results. You need to use much larger number of simulated images (~100,000) and train for many more epochs.(~500)*
 
@@ -169,3 +170,9 @@ After that the different models are arranged as follows:-
 
 
 **For other products of the public data release, please refer to the Appendix of the paper or head to [this link](http://www.astro.yale.edu/aghosh/gamornet.html) or [this link](http://gamornet.ghosharitra.com).**
+
+--- 
+## Questions?
+* If you have a nice upgrade idea or some-way to make the code more efficient, please go ahead and submit a pull request.
+* If you are sure you followed the installation instructions correctly and there is something wrong with the instructions, please open up an issue on GitHub or submit a pull request with relevant changes to the read-me.
+* If you are not sure about how to use something, please send me an email at aritraghsh09+gamornet <at> Gmail. 
