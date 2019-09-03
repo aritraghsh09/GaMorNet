@@ -1,4 +1,4 @@
-# GaMorNet
+# GaMorNet (Galaxy Morphology Network)
 
 GaMorNet is a Convolutional Neural Network based on AlexNet to classify galaxies morphologically. GaMorNet does not need a large amount of training data (as it is trained on simulations and then transfer-learned on a small portion of real data) and can be applied on multiple datasets. Till now, GaMorNet has been tested on ~100,000 SDSS g-band galaxies and ~20,000 CANDELS H-band galaxies and has a misclassification rate of <5%. 
 
@@ -15,7 +15,7 @@ This code is being made available under a GNU General Public License v3.0. Pleas
 ---
 
 ## What do you need to run GaMorNet?
-GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a high-level API for [Tensorflow](https://www.tensorflow.org/). GaMorNet has been tested to work with the following versions of different libraries mentioned below.
+GaMorNet was coded in Python using [TFLearn](http://tflearn.org/) which is a high-level API for [Tensorflow](https://www.tensorflow.org/). GaMorNet has been tested to work with the following versions of different libraries mentioned below.
 
 | Python  |  Numpy | Tensorflow-gpu  |  TFLearn  | CUDA  | cuDNN | 
 |---|---|---|---|---| --- |
@@ -27,25 +27,36 @@ GaMorNet was trained and tested using [TFLearn](http://tflearn.org/) which is a 
 
 Steps to install GaMorNet dependencies:-
 
-* It is highly recommended to initiate a Python virtual environment (eg. using [Anaconda](https://www.anaconda.com/distribution/)) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu)
+* It is highly recommended to initiate a Python virtual environment (eg. using [Anaconda](https://www.anaconda.com/distribution/)) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu). Some other Python libraries that GaMorNet depends on are matplotlib, astropy, math, time and multiprocessing.
 
-* [Instructions for Installing Tensorflow](https://www.tensorflow.org/install)
+   * To initiate a new conda environment with a specific version of Python, you can do `conda create -n yourenvname python=x.x` where x.x is the Python version number and yourenvname is the name of the environment
+   * Then activate the environment using `conda activate yourenvname` or ` source activate yourenvname`
+   * To install relevant numpy version, do `conda install numpy=x.x.x` where x.x.x is the appropriate version number
+   * For installing the other libraries, the following commands should suffice:-
+   ```
+   conda install matplotlib
+   pip install astropy
+   pip install multiprocessing
+   ```
+   (Usually, your conda distribution should already come pre-installed with multiprocessing)
 
-* [Instructions for Installing TFLearn](http://tflearn.org/installation/) Recommended way is to just do `pip install tflearn`
+   * [Instructions for Installing Tensorflow](https://www.tensorflow.org/install)
 
-* To make sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive session to verify the installation. 
+   * [Instructions for Installing TFLearn](http://tflearn.org/installation/) Recommended way is to just do `pip install tflearn`
 
-```
-import tensorflow as tf
-hello = tf.constant('Hello, TensorFlow!')
-sess = tf.Session()
-print(sess.run(hello))
-a = tf.constant(10)
-b = tf.constant(32)
-print(sess.run(a + b))
+   * To make sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive Python session to verify the installation. 
 
-import tflearn as tfl
-```
+   ```
+   import tensorflow as tf
+   hello = tf.constant('Hello, TensorFlow!')
+   sess = tf.Session()
+   print(sess.run(hello))
+   a = tf.constant(10)
+   b = tf.constant(32)
+   print(sess.run(a + b))
+
+   import tflearn as tfl
+   ```
 
 * If all the above commands work, then you are all set. **If there warnings or errors, please check to make sure that you have the recommended versions of critical libraries according to the table above**
 
