@@ -30,19 +30,18 @@ Steps to install GaMorNet dependencies:-
 * It is highly recommended to initiate a Python virtual environment (eg. using [Anaconda](https://www.anaconda.com/distribution/)) with the above-mentioned versions of Python, Numpy, TF-gpu, and TFLearn. Note that CUDA and cuDNN are necessary if you want to use GPU acceleration. More information on using Tensorflow GPU acceleration is available [here](https://www.tensorflow.org/install/gpu). Some other Python libraries that GaMorNet depends on are matplotlib, astropy, math, time and multiprocessing.
 
    * To initiate a new conda environment with a specific version of Python, you can do `conda create -n yourenvname python=x.x` where x.x is the Python version number and yourenvname is the name of the environment
-   * Then activate the environment using `conda activate yourenvname` or ` source activate yourenvname`
-   * To install relevant numpy version, do `conda install numpy=x.x.x` where x.x.x is the appropriate version number
+   * Then, activate the environment using `conda activate yourenvname` or ` source activate yourenvname`
+   * To install the relevant numpy version, do `conda install numpy=x.x.x` where x.x.x is the appropriate version number
    * For installing the other libraries, the following commands should suffice:-
    ```
    conda install matplotlib
    pip install astropy
    pip install multiprocessing
    ```
-   (Usually, your conda distribution should already come pre-installed with multiprocessing)
 
-   * [Instructions for Installing Tensorflow](https://www.tensorflow.org/install)
+   * Now, install Tensorflow in the same environment. [Instructions for Installing Tensorflow](https://www.tensorflow.org/install) [**Please don't install Tensorflow in a separate environment**] 
 
-   * [Instructions for Installing TFLearn](http://tflearn.org/installation/) Recommended way is to just do `pip install tflearn`
+   * Now, install TFLearn in the same environment. [Instructions for Installing TFLearn](http://tflearn.org/installation/) (Recommended way is to just do `pip install tflearn`) [**Please don't install TFLearn in a separate environment**]
 
    * To make sure that you have installed both TFLearn and Tensorflow correctly, run the following piece of code in an interactive Python session to verify the installation. 
 
@@ -57,8 +56,9 @@ Steps to install GaMorNet dependencies:-
 
    import tflearn as tfl
    ```
+   * Finally to de-activate your environment, type `conda deactivate` or `source deactivate`
 
-* If all the above commands work, then you are all set. **If there warnings or errors, please check to make sure that you have the recommended versions of critical libraries according to the table above**
+* If all the above commands work, then you are all set and the gamornet scripts should run without any errors. **If there warnings or errors, please check to make sure that you have the recommended versions of critical libraries according to the table above**
 
 ---
 
