@@ -94,6 +94,8 @@ The following steps demonstrate what you need to do, to run the script successfu
    * `get check-1546293.data-00000-of-00001`
    * `quit`
 
+* Activate the anaconda environment (where you installed the GaMorNet dependencies) using `conda activate yourenvname` or ` source activate yourenvname`
+
 * Run the [gamornet_predict](/gamornet_predict/gamornet_predict.py) script using ```python gamornet_predict.py```
 
 * The predicted probabilities for the test images should be written to an output file named predictions.txt
@@ -125,7 +127,9 @@ The following steps demonstrate what you need to do, to run the script successfu
     * ```git clone https://github.com/aritraghsh09/GaMorNet.git``` 
     * OR
     * ``` git clone git@github.com:aritraghsh09/GaMorNet.git```
-    
+  
+* Activate the anaconda environment (where you installed the GaMorNet dependencies) using `conda activate yourenvname` or ` source activate yourenvname`
+
 * Make sure that you have the following Python Libraries already installed besides Tensorflow and TFLearn :- numpy, pylab, astropy, math, time, multiprocessing
 
 * Run the script [gamornet_train.py](/gamornet_train/gamornet_train.py) using `python gamornet_train.py`. 
@@ -147,6 +151,8 @@ In this demo., we will be retraining GaMorNet using the above mentioned simulate
    * `get check-1546293.index`
    * `get check-1546293.data-00000-of-00001`
    * `quit`
+   
+* Activate the anaconda environment (where you installed the GaMorNet dependencies) using `conda activate yourenvname` or ` source activate yourenvname`
 
 * Uncomment Line #138 in the GaMorNet code ``` #model.load(modelLoadPath+"check-1546293")```
 
