@@ -181,4 +181,4 @@ After that the different models are arranged as follows:-
 ## Questions?
 * If you have an upgrade idea or some way to make the code more efficient, please go ahead and submit a pull request.
 * If you are sure you followed the installation instructions correctly and there is something wrong with the instructions, please open up an issue on GitHub or submit a pull request with relevant changes to the read-me.
-* If you are not sure about how to use something, please send me an email at aritraghsh09+gamornet at Gmail. 
+* If you are not sure about how to use something, please send me an email at aritraghsh09+gamornet at gmail.com 
