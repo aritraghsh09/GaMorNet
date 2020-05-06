@@ -47,7 +47,7 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'default'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -55,5 +55,4 @@ html_theme = 'alabaster'
 html_static_path = []
 
 ### Tgins that need to be set this way for RTD Integration ##
-RTD_NEW_THEME = True
 master_doc = 'index'
