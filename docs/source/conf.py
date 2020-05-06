@@ -54,4 +54,6 @@ html_theme = 'alabaster'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = []
 
-#master_doc = 'index'
+### Tgins that need to be set this way for RTD Integration ##
+RTD_NEW_THEME = True
+master_doc = 'index'
