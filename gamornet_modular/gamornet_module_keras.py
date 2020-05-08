@@ -1,9 +1,15 @@
-from keras.models import Sequential, load_model
+from keras.models import Sequential, load_model, clone_model
 from keras.layers import Dense, Flatten, Dropout, Activation, Input
 from keras.layers import Conv2D, MaxPooling2D
 from keras.initializers import VarianceScaling
 from keras import backend as K
 from keras.engine.topology import Layer, InputSpec
+import pandas as pd
+import wget
+import random
+import string
+import os
+
 
 #Implementing LRN in Keras. Code from "Deep Learning with Python" by F. Chollet
 class LocalResponseNormalization(Layer):
@@ -39,17 +45,20 @@ class LocalResponseNormalization(Layer):
     def get_output_shape_for(self, input_shape):
         return input_shape
     
-    
 
-def build_gamornet_model_keras(input_shape=None):
+def check_input_shape_validity(input_shape):
     
-    if input_shape == None:
-        print("ERROR:You need to specify an input shape while calling build_gamornet_model")
-    elif input_shape == 'SDSS':
+    if input_shape == 'SDSS':
         input_shape = (167,167,1)
     elif input_shape == 'CANDELS':
         input_shape = (83,83,1)
+        
+    return input_shape
     
+
+def gamornet_build_model_keras(input_shape):
+    
+    input_shape = check_input_shape_validity(input_shape)
     
     #uniform scaling initializer
     uniform_scaling = VarianceScaling(scale=1.0, mode='fan_in', distribution='uniform', seed=None)
@@ -79,3 +88,62 @@ def build_gamornet_model_keras(input_shape=None):
     model.add(Dense(3, activation='softmax',kernel_initializer='TruncatedNormal'))
     
     return model
+
+def get_model_from_link_keras(link,model):
+    
+    letters = string.ascii_lowercase
+    if link[-4:] == 'hdf5':
+        file_name = ''.join(random.choice(letters) for i in range(15)) + '.hdf5'
+    else:
+        file_name = ''.join(random.choice(letters) for i in range(15)) + '.h5'
+    
+    wget.download(link,out=file_name)
+    model.load_weights(file_name)
+    os.remove(file_name)
+    
+    return model
+
+def gamornet_load_model_keras(model,model_load_path):
+    
+    if model_load_path == 'SDSS_sim':
+        print("Fetching SDSS Sim Trained Weigths.....")
+        link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/SDSS/sim_trained/model_sdsss_sim_trained.h5'
+        model = get_model_from_link_keras(link,model)
+        
+    elif model_load_path == 'SDSS_tl':
+        print("Fetching SDSS TL Weigths.....")
+        link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/SDSS/tl/model_sdsss_tl.hdf5'
+        model = get_model_from_link_keras(link,model)
+        
+    elif model_load_path == 'CANDELS_sim':
+        print("Fetching CANDELS Sim Trained Weigths.....")
+        link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/CANDELS/sim_trained/model_candels_sim_trained.hdf5'
+        model = get_model_from_link_keras(link,model)
+        
+    elif model_load_path == 'CANDELS_tl':
+        print("Fetching CANDELS TL Weigths.....")
+        link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/CANDELS/tl/model_candels_tl.hdf5'
+        model = get_model_from_link_keras(link,model)
+        
+    else:
+         model.load_weights(model_load_path)
+            
+    return model
+    
+
+
+def gamornet_predict_keras(img_array,model_load_path,input_shape,batch_size=64,individual_arrays=False):
+    
+    model = gamornet_build_model_keras(input_shape=input_shape)
+    
+    print("Loading GaMorNet Model.....")
+    model = gamornet_load_model_keras(model,model_load_path)
+    
+    print("Performing Predictions.....")
+    preds = model.predict(img_array,batch_size = batch_size)
+    preds = np.array(preds) #converting to a numpy array for easier handling.
+    
+    if individual_arrays == True:
+        return preds[:,0],preds[:,1],preds[:,2] # 'disk_prob','unclass_prob','bulge_prob'
+    else:
+        return preds
