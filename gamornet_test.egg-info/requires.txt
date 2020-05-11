@@ -1,0 +1,8 @@
+tensorflow-gpu==1.13.1
+tflearn==0.3.2
+keras==2.2.4
+pandas>=1.0.3
+wget>=3.2
+numpy>=1.17.0
+astropy==3.2.1
+matplotlib>=3.1.0

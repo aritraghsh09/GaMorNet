@@ -1,0 +1,9 @@
+README.md
+setup.py
+gamornet_modules/__init__.py
+gamornet_modules/gamornet_module_keras.py
+gamornet_test.egg-info/PKG-INFO
+gamornet_test.egg-info/SOURCES.txt
+gamornet_test.egg-info/dependency_links.txt
+gamornet_test.egg-info/requires.txt
+gamornet_test.egg-info/top_level.txt
