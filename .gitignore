@@ -1,0 +1,4 @@
+#### Files built by setup ###
+/build/
+/dist/
+*.egg-info
