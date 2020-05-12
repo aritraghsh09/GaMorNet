@@ -18,7 +18,7 @@ setuptools.setup(
 	],
 	python_requires='>=3.6',
 	install_requires=[
-		"tensorflow-gpu==1.13.1",
+		"tensorflow-gpu==1.15.2",
 		"tflearn==0.3.2",
 		"keras==2.2.4",
 		"pandas==1.0.3",
