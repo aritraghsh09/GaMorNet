@@ -11,6 +11,7 @@ setuptools.setup(
 	description="A CNN to classify galaxies morphologically",
 	long_description=long_description,
 	long_description_content_type="text/markdown",
+	keywords="astrophysics astronomy galaxies convolutional neural networks morphological analysis morphology sdss candels",
 	url="http://gamornet.ghosharitra.com/",
 	project_urls={
 		"Source Code": "https://github.com/aritraghsh09/GaMorNet",
