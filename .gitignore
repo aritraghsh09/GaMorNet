@@ -1,8 +1,0 @@
-#### Files built by setup ###
-/build/
-/dist/
-*.egg-info
-__pycache__
-/gamornet_train/
-/gamornet_predict/
-/gamornet.py
