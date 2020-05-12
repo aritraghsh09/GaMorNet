@@ -7,7 +7,7 @@ setuptools.setup(
 	name="gamornet-test", # Replace with your own username
 	version="0.1",
 	author="Aritra Ghosh",
-	author_email="aritra.ghosh@yale.edu",
+	author_email="aritraghsh09@gmail.com",
 	description="A CNN to classify galaxies morphologically",
 	long_description=long_description,
 	long_description_content_type="text/markdown",
