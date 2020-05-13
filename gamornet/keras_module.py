@@ -7,7 +7,6 @@ from keras.callbacks import ModelCheckpoint
 from keras.callbacks import CSVLogger
 from keras import backend as K
 from keras.engine.topology import Layer, InputSpec
-import pandas as pd
 import wget
 import random
 import string

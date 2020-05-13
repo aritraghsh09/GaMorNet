@@ -32,7 +32,6 @@ setuptools.setup(
 		"tensorflow-gpu ~=1.12",
 		"tflearn ~=0.3",
 		"keras ~=2.2",
-		"pandas >=1.0",
 		"wget >=3.2",
 		"numpy >=1.16",
 	],
