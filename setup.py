@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
 	name="gamornet-test", # Replace with your own username
-	version="0.1",
+	version="0.2.1",
 	author="Aritra Ghosh",
 	author_email="aritraghsh09@gmail.com",
 	description="A CNN to classify galaxies morphologically",
@@ -27,17 +27,16 @@ setuptools.setup(
 		"Topic :: Scientific/Engineering :: Physics",
 	],
 	packages=setuptools.find_packages(),
-	python_requires='==3.6',
+	python_requires='~=3.1',
 	install_requires=[
-		"tensorflow-gpu==1.15.2",
-		"tflearn==0.3.2",
-		"keras==2.2.5",
-		"pandas==1.0.3",
-		"wget==3.2",
-		"numpy==1.16.4",
-		"astropy==3.2.1",
-		"matplotlib==3.1.0",
+		"tensorflow-gpu ~=1.12",
+		"tflearn ~=0.3",
+		"keras ~=2.2",
+		"pandas >=1.0",
+		"wget >=3.2",
+		"numpy >=1.16",
+		"astropy >=3.2",
+		"matplotlib >=3.1",
 	],
-
 )
 
