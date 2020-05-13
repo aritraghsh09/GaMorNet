@@ -35,8 +35,6 @@ setuptools.setup(
 		"pandas >=1.0",
 		"wget >=3.2",
 		"numpy >=1.16",
-		"astropy >=3.2",
-		"matplotlib >=3.1",
 	],
 )
 
