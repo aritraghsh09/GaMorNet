@@ -19,6 +19,7 @@ from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.estimator import regression
+from tflearn.optimizers import Nesterov,Momentum
 import wget
 import random
 import string
@@ -169,35 +170,33 @@ def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64
 
 
 
-def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,files_save_path="./",epochs=100,checkpoint_freq=0,batch_size=64,lr=0.0001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',load_model=False,model_load_path="./",save_model=True,verbose=1):
+def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,files_save_path="./",epochs=100,max_checkpoints=1,batch_size=64,lr=0.0001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',load_model=False,model_load_path="./",save_model=True,show_metric=True,clear_session=False):
 
+	#TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.	
+	if clear_session == True:
+		K.clear_session()
+	
 	check_imgs_validity(training_imgs)
 	check_imgs_validity(validation_imgs)
 	check_labels_validity(training_labels)
 	check_labels_validity(validation_labels)
 
 	model = gamornet_build_model_tflearn(input_shape=input_shape)
-
-	sgd = optimizers.SGD(lr=lr, momentum=momentum, decay=decay, nesterov=nesterov)
-	model.compile(loss=loss, optimizer=sgd, metrics=['accuracy']) 
-
-
-	callbacks_list = []
 	
-	if checkpoint_freq != 0:
-		checkpoint = ModelCheckpoint(files_save_path + 'model_{epoch:02d}.hdf5', monitor='val_loss', verbose=verbose, save_best_only=False, save_weights_only=False, mode='auto', period=checkpoint_freq)
-		callbacks_list.append(checkpoint)
 
-	csv_logger = CSVLogger(files_save_path + "metrics.csv", separator=',', append=False)
-	callbacks_list.append(csv_logger)
+	if nesterov == False:
+		optimizer = Momentum(momentum=momentum,lr_decay=decay)
+	else:
+		optimizer = Nesterov(momentum=momentum,lr_decay=decay)
+
+	model = regression(model,optimizer=optimizer,loss=loss,learning_rate=lr)
 	
+	model = tflearn.DNN(model, checkpoint_path=files_save_path, max_checkpoints=max_checkpoints)
+ 	
 	if load_model == True:
 		model = gamornet_load_model_tflearn(model,model_load_path)
 
-	model.fit(training_imgs, training_labels, batch_size=batch_size, epochs=epochs, verbose=verbose, validation_data=(validation_imgs,validation_labels), shuffle=True, callbacks=callbacks_list)
-
-	if save_model == True:
-		model.save(files_save_path + "trained_model.hdf5")
+	model.fit(training_imgs, training_labels, n_epoch=epochs, validation_set=(validation_imgs,validation_labels), shuffle=True, show_metric=show_metric, batch_size=batch_size, snapshot_step=None, snapshot_epoch=save_model)
 
 	return model
 
