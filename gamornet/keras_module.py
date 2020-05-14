@@ -64,7 +64,7 @@ def check_bools_validity(bools):
 	try:
 		for element in bools:
 			if type(element) != bool:
-			raise Exception("The Supplied Array of Bools doesn't look okay")
+				raise Exception("The Supplied Array of Bools doesn't look okay")
 
 		if len(bools) != 8:
 			raise Exception("The Supplied Array of Bools doesn't look okay")
