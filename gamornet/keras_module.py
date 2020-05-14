@@ -37,20 +37,14 @@ def check_imgs_validity(img_array):
 	if isinstance(img_array,np.ndarray):
 		if len(img_array.shape) != 4:
 			raise Exception("The Image Array needs to have 4 dimensions. (num,x,y,bands)")
-	elif isinstance(img_array,list):
-		if len(np.array(img_array).shape) != 4:
-			raise Exception("The Image Array needs to have 4 dimensions. (num,x,y,bands)")
 	else:
-		raise Exception("The Image Array Needs to be a 4 Dimensional Numpy Array.")
+		raise Exception("The Image Array Needs to be a 4 Dimensional Numpy Array. (num,x,y,bands)")
 
 
 def check_labels_validity(labels):
 
 	if isinstance(labels,np.ndarray):
 		if labels.shape[1] != 3:
-			raise Exception("The Labels Array needs to have 2 dimensions. (num,3)")
-	elif isinstance(labels,list):
-		if np.array(labels).shape[1] != 3:
 			raise Exception("The Labels Array needs to have 2 dimensions. (num,3)")
 	else:
 		raise Exception("The Lables Array Needs to be a 2 Dimensional Numpy Array. (num,3)")
