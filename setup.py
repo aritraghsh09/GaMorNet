@@ -27,7 +27,7 @@ setuptools.setup(
 		"Topic :: Scientific/Engineering :: Physics",
 	],
 	packages=setuptools.find_packages(),
-	python_requires='~=3.1',
+	python_requires='~=3.3',
 	install_requires=[
 		"tensorflow-gpu ~=1.12",
 		"tflearn ~=0.3",
