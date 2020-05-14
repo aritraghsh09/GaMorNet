@@ -14,6 +14,16 @@ import os
 import numpy as np
 
 
+import tflearn
+from tflearn.layers.core import input_data, dropout, fully_connected
+from tflearn.layers.conv import conv_2d, max_pool_2d
+from tflearn.layers.normalization import local_response_normalization
+from tflearn.layers.estimator import regression
+import wget
+import random
+import string
+import os
+import numpy as np
 
 
 
@@ -73,7 +83,7 @@ def check_bools_validity(bools):
 		raise Exception("The Supplied Array of Bools doesn't look okay")
 
 
-def get_model_from_link_keras(link,model):
+def get_model_from_link_tflearn(link,model):
 	
 	letters = string.ascii_lowercase
 	if link[-4:] == 'hdf5':
@@ -94,7 +104,7 @@ def get_model_from_link_keras(link,model):
 	return model
 
 
-def gamornet_load_model_keras(model,model_load_path):
+def gamornet_load_model_tflearn(model,model_load_path):
 	
 	if model_load_path == 'SDSS_sim':
 		print("Fetching SDSS Sim Trained Weigths.....")
@@ -128,88 +138,42 @@ def gamornet_load_model_keras(model,model_load_path):
 
 
 ############################################
-##########KERAS FUNCTIONS##################
+##########TFLEARN FUNCTIONS##################
 
-#Implementing LRN in Keras. Code from "Deep Learning with Python" by F. Chollet
-class LocalResponseNormalization(Layer):
-
-	def __init__(self, n=5, alpha=0.0001, beta=0.75, k=1.0, **kwargs):
-		self.n = n
-		self.alpha = alpha
-		self.beta = beta
-		self.k = k
-		super(LocalResponseNormalization, self).__init__(**kwargs)
-
-	def build(self, input_shape):
-		self.shape = input_shape
-		super(LocalResponseNormalization, self).build(input_shape)
-
-	def call(self, x, mask=None):
-		if K.image_dim_ordering == "th":
-			_, f, r, c = self.shape
-		else:
-			_, r, c, f = self.shape
-		squared = K.square(x)
-		pooled = K.pool2d(squared, (self.n, self.n), strides=(1, 1),
-			padding="same", pool_mode="avg")
-		if K.image_dim_ordering == "th":
-			summed = K.sum(pooled, axis=1, keepdims=True)
-			averaged = self.alpha * K.repeat_elements(summed, f, axis=1)
-		else:
-			summed = K.sum(pooled, axis=3, keepdims=True)
-			averaged = self.alpha * K.repeat_elements(summed, f, axis=3)
-		denom = K.pow(self.k + averaged, self.beta)
-		return x / denom
-
-	def get_output_shape_for(self, input_shape):
-		return input_shape
+def gamornet_build_model_tflearn(input_shape):
 	
+	input_shape = check_input_shape_validity(input_shape)	
 
-	
-
-def gamornet_build_model_keras(input_shape):
-	
-	input_shape = check_input_shape_validity(input_shape)
-	
-	#uniform scaling initializer
-	uniform_scaling = VarianceScaling(scale=1.0, mode='fan_in', distribution='uniform', seed=None)
-
-	#Building GaMorNet
-	model = Sequential()
-
-	model.add(Conv2D(96,11, strides=4, activation='relu', input_shape=input_shape,padding='same',kernel_initializer=uniform_scaling))
-	model.add(MaxPooling2D(pool_size=3, strides=2,padding='same'))
-	model.add(LocalResponseNormalization())
-
-	model.add(Conv2D(256,5, activation='relu',padding='same',kernel_initializer=uniform_scaling))
-	model.add(MaxPooling2D(pool_size=3, strides=2,padding='same'))
-	model.add(LocalResponseNormalization())
-
-	model.add(Conv2D(384, 3, activation='relu',padding='same',kernel_initializer=uniform_scaling))
-	model.add(Conv2D(384, 3, activation='relu',padding='same',kernel_initializer=uniform_scaling))
-	model.add(Conv2D(256, 3, activation='relu',padding='same',kernel_initializer=uniform_scaling))
-	model.add(MaxPooling2D(pool_size=3, strides=2,padding='same'))
-	model.add(LocalResponseNormalization())
-
-	model.add(Flatten())
-	model.add(Dense(4096, activation='tanh',kernel_initializer='TruncatedNormal'))
-	model.add(Dropout(0.5))
-	model.add(Dense(4096, activation='tanh',kernel_initializer='TruncatedNormal'))
-	model.add(Dropout(0.5))
-	model.add(Dense(3, activation='softmax',kernel_initializer='TruncatedNormal'))
+	model = input_data(shape=[None, input_shape[0], input_shape[1], input_shape[2]]) 
+	model = conv_2d(model, 96, 11, strides=4, activation='relu')
+	model = max_pool_2d(model, 3, strides=2)
+	model = local_response_normalization(model)
+	model = conv_2d(model, 256, 5, activation='relu')
+	model = max_pool_2d(model, 3, strides=2)
+	model = local_response_normalization(model)
+	model = conv_2d(model, 384, 3, activation='relu')
+	model = conv_2d(model, 384, 3, activation='relu')
+	model = conv_2d(model, 256, 3, activation='relu')
+	model = max_pool_2d(model, 3, strides=2)
+	model = local_response_normalization(model)
+	model = fully_connected(model, 4096, activation='tanh')
+	model = dropout(model, 0.5)
+	model = fully_connected(model, 4096, activation='tanh')
+	model = dropout(model, 0.5)
+	model = fully_connected(model, 3, activation='softmax')
 	
 	return model
 
 
 
-def gamornet_predict_keras(img_array,model_load_path,input_shape,batch_size=64,individual_arrays=False):
+def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64,individual_arrays=False):
 	
 	check_imgs_validity(img_array)
 
-	model = gamornet_build_model_keras(input_shape=input_shape)
+	model = gamornet_build_model_tflearn(input_shape=input_shape)
 	
 	print("Loading GaMorNet Model.....")
-	model = gamornet_load_model_keras(model,model_load_path)
+	model = gamornet_load_model_tflearn(model,model_load_path)
 	
 	print("Performing Predictions.....")
 	preds = model.predict(img_array,batch_size = batch_size)
@@ -221,14 +185,14 @@ def gamornet_predict_keras(img_array,model_load_path,input_shape,batch_size=64,i
 		return preds
 
 
-def gamornet_train_keras(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,files_save_path="./",epochs=100,checkpoint_freq=0,batch_size=64,lr=0.0001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',load_model=False,model_load_path="./",save_model=True,verbose=1):
+def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,files_save_path="./",epochs=100,checkpoint_freq=0,batch_size=64,lr=0.0001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',load_model=False,model_load_path="./",save_model=True,verbose=1):
 
 	check_imgs_validity(training_imgs)
 	check_imgs_validity(validation_imgs)
 	check_labels_validity(training_labels)
 	check_labels_validity(validation_labels)
 
-	model = gamornet_build_model_keras(input_shape=input_shape)
+	model = gamornet_build_model_tflearn(input_shape=input_shape)
 
 	sgd = optimizers.SGD(lr=lr, momentum=momentum, decay=decay, nesterov=nesterov)
 	model.compile(loss=loss, optimizer=sgd, metrics=['accuracy']) 
@@ -244,7 +208,7 @@ def gamornet_train_keras(training_imgs,training_labels,validation_imgs,validatio
 	callbacks_list.append(csv_logger)
 	
 	if load_model == True:
-		model = gamornet_load_model_keras(model,model_load_path)
+		model = gamornet_load_model_tflearn(model,model_load_path)
 
 	model.fit(training_imgs, training_labels, batch_size=batch_size, epochs=epochs, verbose=verbose, validation_data=(validation_imgs,validation_labels), shuffle=True, callbacks=callbacks_list)
 
@@ -255,7 +219,7 @@ def gamornet_train_keras(training_imgs,training_labels,validation_imgs,validatio
 
 
 	
-def gamornet_tl_keras(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,load_layers_bools = [True]*8,trainable_bools = [True]*8,model_load_path="./",files_save_path="./",epochs=100,checkpoint_freq=0,batch_size=64,lr=0.00001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',save_model=True,verbose=1):
+def gamornet_tl_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,load_layers_bools = [True]*8,trainable_bools = [True]*8,model_load_path="./",files_save_path="./",epochs=100,checkpoint_freq=0,batch_size=64,lr=0.00001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',save_model=True,verbose=1):
 
 	check_imgs_validity(training_imgs)
 	check_imgs_validity(validation_imgs)
@@ -264,9 +228,9 @@ def gamornet_tl_keras(training_imgs,training_labels,validation_imgs,validation_l
 	check_bools_validity(load_layers_bools)
 	check_bools_validity(trainable_bools)
 
-	model = gamornet_build_model_keras(input_shape=input_shape)
+	model = gamornet_build_model_tflearn(input_shape=input_shape)
 	model_new = clone_model(model)
-	model = gamornet_load_model_keras(model,model_load_path)
+	model = gamornet_load_model_tflearn(model,model_load_path)
 
 	#Reversing the Order of the Bools because I will call .pop() on these later	
 	load_layers_bools.reverse()
