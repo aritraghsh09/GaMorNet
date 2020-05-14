@@ -31,63 +31,7 @@ import time
 ############################################
 ##########HELPER FUNCTIONS##################
 
-def check_input_shape_validity(input_shape):
-	
-	if input_shape == 'SDSS':
-		input_shape = (167,167,1)
-	elif input_shape == 'CANDELS':
-		input_shape = (83,83,1)		  
-	else:
-		try:
-			if len(input_shape) != 3:
-				raise Exception("input_shape has to be a tuple (typically of 3 dimensions) or any of the available keywords")
-		except:
-			raise Exception("input_shape has to be a tuple (typically of 3 dimensions) or any of the available keywords")
-
-	return input_shape
-
-
-def check_imgs_validity(img_array):
-
-	if isinstance(img_array,np.ndarray):
-		if len(img_array.shape) != 4:
-			raise Exception("The Image Array needs to have 4 dimensions. (num,x,y,bands)")
-	else:
-		raise Exception("The Image Array Needs to be a 4 Dimensional Numpy Array. (num,x,y,bands)")
-
-
-def check_labels_validity(labels):
-
-	if isinstance(labels,np.ndarray):
-		if labels.shape[1] != 3:
-			raise Exception("The Labels Array needs to have 2 dimensions. (num,3)")
-	else:
-		raise Exception("The Lables Array Needs to be a 2 Dimensional Numpy Array. (num,3)")
-
-
-def check_bools_validity(bools):
-
-	if (bools == 'train_bools_SDSS'):
-		bools = [True]*8
-	elif (bools == 'train_bools_CANDELS'):
-		bools = [False,False,False,True,True,True,True,True]
-	elif (bools == 'load_bools_SDSS'):
-		bools = [True,True,True,True,True,False,False,False]
-	elif (bools == 'load_bools_CANDELS'):
-		bools = [True,True,True,True,True,True,False,False]
-
-	try:
-		for element in bools:
-			if type(element) != bool:
-				raise Exception("The Supplied Array of Bools doesn't look okay")
-	
-		if len(bools) != 8:
-				raise Exception("The Supplied Array of Bools doesn't look okay")
-
-	except:
-		raise Exception("The Supplied Array of Bools doesn't look okay")
-
-	return bools
+from keras_module import check_input_shape_validity,check_imgs_validity,check_labels_validity,check_bools_validity
 
 
 def get_model_from_link_tflearn(base_link,file_names,model):
