@@ -57,16 +57,28 @@ def check_labels_validity(labels):
 
 
 def check_bools_validity(bools):
+
+	if (bools == 'train_bools_SDSS'):
+		bools = [True]*8
+	elif (bools == 'train_bools_CANDELS'):
+		bools = [False,False,False,True,True,True,True,True]
+	elif (bools == 'load_bools_SDSS'):
+		bools = [True,True,True,True,True,False,False,False]
+	elif (bools == 'load_bools_CANDELS'):
+		bools = [True,True,True,True,True,True,False,False]
+
 	try:
 		for element in bools:
 			if type(element) != bool:
-				raise Exception("The Supplied Array of Bools doesn't look okay")
-	
+			raise Exception("The Supplied Array of Bools doesn't look okay")
+
 		if len(bools) != 8:
-				raise Exception("The Supplied Array of Bools doesn't look okay")
+			raise Exception("The Supplied Array of Bools doesn't look okay")
 
 	except:
 		raise Exception("The Supplied Array of Bools doesn't look okay")
+
+	return bools
 
 
 def get_model_from_link_keras(link,model):
@@ -257,8 +269,8 @@ def gamornet_tl_keras(training_imgs,training_labels,validation_imgs,validation_l
 	check_imgs_validity(validation_imgs)
 	check_labels_validity(training_labels)
 	check_labels_validity(validation_labels)
-	check_bools_validity(load_layers_bools)
-	check_bools_validity(trainable_bools)
+	load_layers_bools = check_bools_validity(load_layers_bools)
+	trainable_bools = check_bools_validity(trainable_bools)
 
 	model = gamornet_build_model_keras(input_shape=input_shape)
 	model_new = clone_model(model)
