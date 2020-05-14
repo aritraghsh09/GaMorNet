@@ -34,6 +34,7 @@ setuptools.setup(
 		"keras ~=2.2",
 		"wget >=3.2",
 		"numpy >=1.16",
+		"progressbar2",
 	],
 )
 
