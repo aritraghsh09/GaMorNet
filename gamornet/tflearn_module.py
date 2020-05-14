@@ -24,8 +24,9 @@ import random
 import string
 import os
 import numpy as np
-
-
+import progressbar
+from keras import backend as K
+import time
 
 ############################################
 ##########HELPER FUNCTIONS##################
@@ -71,6 +72,16 @@ def check_labels_validity(labels):
 
 
 def check_bools_validity(bools):
+
+	if (bools == 'train_bools_SDSS'):
+		bools = [True]*8
+	elif (bools == 'train_bools_CANDELS'):
+		bools = [False,False,False,True,True,True,True,True]
+	elif (bools == 'load_bools_SDSS'):
+		bools = [True,True,True,True,True,False,False,False]
+	elif (bools == 'load_bools_CANDELS'):
+		bools = [True,True,True,True,True,True,False,False]
+
 	try:
 		for element in bools:
 			if type(element) != bool:
@@ -82,24 +93,31 @@ def check_bools_validity(bools):
 	except:
 		raise Exception("The Supplied Array of Bools doesn't look okay")
 
+	return bools
 
-def get_model_from_link_tflearn(link,model):
+
+def get_model_from_link_tflearn(base_link,file_names,model):
 	
-	letters = string.ascii_lowercase
-	if link[-4:] == 'hdf5':
-		file_name = ''.join(random.choice(letters) for i in range(15)) + '.hdf5'
-	else:
-		file_name = ''.join(random.choice(letters) for i in range(15)) + '.h5'
+	#Skipping over random name generation because the tflearn files themselves are named in a super specific way
+	#Thus there is no chance of accidental deletion like the keras model.h5 names
 	
-	wget.download(link,out=file_name)
+	file_links = np.core.defchararray.add(np.array([base_link]*3),file_names)
+	
+	for link in file_links:
+		wget.download(link)
 
 	try:
-		model.load_weights(file_name)
+		model.load(file_names[2][:-5])
 	except:
-		os.remove(file_name)
+		os.remove(file_names[0])
+		os.remove(file_names[1])
+		os.remove(file_names[2])
 		raise
 
-	os.remove(file_name)
+	
+	os.remove(file_names[0])
+	os.remove(file_names[1])
+	os.remove(file_names[2])
 	
 	return model
 
@@ -108,26 +126,30 @@ def gamornet_load_model_tflearn(model,model_load_path):
 	
 	if model_load_path == 'SDSS_sim':
 		print("Fetching SDSS Sim Trained Weigths.....")
-		link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/SDSS/sim_trained/model_sdss_sim_trained.h5'
-		model = get_model_from_link_keras(link,model)
+		base_link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/SDSS/sim_trained/'
+		file_names = np.array(['check-1405593.data-00000-of-00001','check-1405593.index','check-1405593.meta'])
+		model = get_model_from_link_tflearn(base_link,file_names,model)
 		
 	elif model_load_path == 'SDSS_tl':
 		print("Fetching SDSS TL Weigths.....")
-		link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/SDSS/tl/model_sdsss_tl.hdf5'
-		model = get_model_from_link_keras(link,model)
+		base_link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/SDSS/tl/'
+		file_names = np.array(['check-1546293.data-00000-of-00001','check-1546293.index','check-1546293.meta'])
+		model = get_model_from_link_tflearn(base_link,file_names,model)
 		
 	elif model_load_path == 'CANDELS_sim':
 		print("Fetching CANDELS Sim Trained Weigths.....")
-		link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/CANDELS/sim_trained/model_candels_sim_trained.hdf5'
-		model = get_model_from_link_keras(link,model)
+		base_link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/CANDELS/sim_trained/'
+		file_names = np.array(['check-562800.data-00000-of-00001','check-562800.index','check-562800.meta'])
+		model = get_model_from_link_tflearn(base_link,file_names,model)
 		
 	elif model_load_path == 'CANDELS_tl':
 		print("Fetching CANDELS TL Weigths.....")
-		link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet_keras/trained_models/CANDELS/tl/model_candels_tl.hdf5'
-		model = get_model_from_link_keras(link,model)
+		base_link = 'ftp://ftp.astro.yale.edu/pub/aghosh/gamornet/trained_models/CANDELS/tl/'
+		file_names = np.array(['check-571275.data-00000-of-00001','check-571275.index','check-571275.meta'])
+		model = get_model_from_link_tflearn(base_link,file_names,model)
 		
 	else:
-		 model.load_weights(model_load_path)
+		 model.load(model_load_path)
 			
 	return model
 
@@ -140,49 +162,73 @@ def gamornet_load_model_tflearn(model,model_load_path):
 ############################################
 ##########TFLEARN FUNCTIONS##################
 
-def gamornet_build_model_tflearn(input_shape):
+def gamornet_build_model_tflearn(input_shape,trainable_bools = [True]*8,load_layers_bools = [True]*8):
 	
 	input_shape = check_input_shape_validity(input_shape)	
 
 	model = input_data(shape=[None, input_shape[0], input_shape[1], input_shape[2]]) 
-	model = conv_2d(model, 96, 11, strides=4, activation='relu')
+	model = conv_2d(model, 96, 11, strides=4, activation='relu',trainable=trainable_bools[0],restore=load_layers_bools[0])
 	model = max_pool_2d(model, 3, strides=2)
 	model = local_response_normalization(model)
-	model = conv_2d(model, 256, 5, activation='relu')
+	model = conv_2d(model, 256, 5, activation='relu',trainable=trainable_bools[1],restore=load_layers_bools[1])
 	model = max_pool_2d(model, 3, strides=2)
 	model = local_response_normalization(model)
-	model = conv_2d(model, 384, 3, activation='relu')
-	model = conv_2d(model, 384, 3, activation='relu')
-	model = conv_2d(model, 256, 3, activation='relu')
+	model = conv_2d(model, 384, 3, activation='relu',trainable=trainable_bools[2],restore=load_layers_bools[2])
+	model = conv_2d(model, 384, 3, activation='relu',trainable=trainable_bools[3],restore=load_layers_bools[3])
+	model = conv_2d(model, 256, 3, activation='relu',trainable=trainable_bools[4],restore=load_layers_bools[4])
 	model = max_pool_2d(model, 3, strides=2)
 	model = local_response_normalization(model)
-	model = fully_connected(model, 4096, activation='tanh')
+	model = fully_connected(model, 4096, activation='tanh',trainable=trainable_bools[5],restore=load_layers_bools[5])
 	model = dropout(model, 0.5)
-	model = fully_connected(model, 4096, activation='tanh')
+	model = fully_connected(model, 4096, activation='tanh',trainable=trainable_bools[6],restore=load_layers_bools[6])
 	model = dropout(model, 0.5)
-	model = fully_connected(model, 3, activation='softmax')
+	model = fully_connected(model, 3, activation='softmax',trainable=trainable_bools[7],restore=load_layers_bools[7])
 	
 	return model
 
 
 
-def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64,individual_arrays=False):
-	
+def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64,individual_arrays=False,trainable_bools = [True]*8,clear_session=False):
+
+	#TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.	
+	if clear_session == True:
+		K.clear_session()
+
 	check_imgs_validity(img_array)
 
-	model = gamornet_build_model_tflearn(input_shape=input_shape)
-	
+	trainable_bools = check_bools_validity(trainable_bools)	
+
+	model = gamornet_build_model_tflearn(input_shape=input_shape,trainable_bools=trainable_bools)
+	model = tflearn.DNN(model)	
+
 	print("Loading GaMorNet Model.....")
 	model = gamornet_load_model_tflearn(model,model_load_path)
 	
 	print("Performing Predictions.....")
-	preds = model.predict(img_array,batch_size = batch_size)
-	preds = np.array(preds) #converting to a numpy array for easier handling.
+
+	preds = [] #array to store results 
+
+	total_elements = len(img_array)
+	num_batches = int(total_elements/batch_size)
 	
+	time.sleep(0.1) #Time to Flush all Print Statements before the progressbar output comes on
+	for i in progressbar.progressbar(range(0,num_batches)):
+		ll = i*batch_size
+		ul = (i+1)*batch_size
+		preds.extend(model.predict(img_array[ll:ul]))
+
+
+	if ul != len(img_array):
+		preds.extend(model.predict(img_array[ul:len(img_array)])) #for the last partial batch
+	
+
+	preds = np.array(preds) #converting to a numpy array for easier handling.
+
 	if individual_arrays == True:
 		return preds[:,0],preds[:,1],preds[:,2] # 'disk_prob','unclass_prob','bulge_prob'
 	else:
 		return preds
+
 
 
 def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,files_save_path="./",epochs=100,checkpoint_freq=0,batch_size=64,lr=0.0001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',load_model=False,model_load_path="./",save_model=True,verbose=1):
