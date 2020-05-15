@@ -104,6 +104,8 @@ def gamornet_load_model_tflearn(model,model_load_path):
 def gamornet_build_model_tflearn(input_shape,trainable_bools = [True]*8,load_layers_bools = [True]*8):
 	
 	input_shape = check_input_shape_validity(input_shape)	
+	load_layers_bools = check_bools_validity(load_layers_bools)
+	trainable_bools = check_bools_validity(trainable_bools)
 
 	model = input_data(shape=[None, input_shape[0], input_shape[1], input_shape[2]]) 
 	model = conv_2d(model, 96, 11, strides=4, activation='relu',trainable=trainable_bools[0],restore=load_layers_bools[0])
@@ -135,7 +137,6 @@ def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64
 
 	check_imgs_validity(img_array)
 
-	trainable_bools = check_bools_validity(trainable_bools)	
 
 	model = gamornet_build_model_tflearn(input_shape=input_shape,trainable_bools=trainable_bools)
 	model = tflearn.DNN(model)	
@@ -202,57 +203,34 @@ def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validat
 
 
 	
-def gamornet_tl_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,load_layers_bools = [True]*8,trainable_bools = [True]*8,model_load_path="./",files_save_path="./",epochs=100,checkpoint_freq=0,batch_size=64,lr=0.00001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',save_model=True,verbose=1):
+def gamornet_tl_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,load_layers_bools = [True]*8,trainable_bools = [True]*8,model_load_path="./",files_save_path="./",epochs=100,max_checkpoints=1,batch_size=64,lr=0.00001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',save_model=True,show_metric=True,clear_session=False):
+
+
+	#TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.	
+	if clear_session == True:
+		K.clear_session()
 
 	check_imgs_validity(training_imgs)
 	check_imgs_validity(validation_imgs)
 	check_labels_validity(training_labels)
 	check_labels_validity(validation_labels)
-	check_bools_validity(load_layers_bools)
-	check_bools_validity(trainable_bools)
 
-	model = gamornet_build_model_tflearn(input_shape=input_shape)
-	model_new = clone_model(model)
+	model = gamornet_build_model_tflearn(input_shape=input_shape,trainable_bools=trainable_bools,load_layers_bools=load_layers_bools)
+
+	if nesterov == False:
+		optimizer = Momentum(momentum=momentum,lr_decay=decay)
+	else:
+		optimizer = Nesterov(momentum=momentum,lr_decay=decay)
+
+	model = regression(model,optimizer=optimizer,loss=loss,learning_rate=lr)
+	
+	model = tflearn.DNN(model, checkpoint_path=files_save_path, max_checkpoints=max_checkpoints)
+ 	
 	model = gamornet_load_model_tflearn(model,model_load_path)
 
-	#Reversing the Order of the Bools because I will call .pop() on these later	
-	load_layers_bools.reverse()
-	trainable_bools.reverse()
+	model.fit(training_imgs, training_labels, n_epoch=epochs, validation_set=(validation_imgs,validation_labels), shuffle=True, show_metric=show_metric, batch_size=batch_size, snapshot_step=None, snapshot_epoch=save_model)
 
-	for i in range(len(model_new.layers)):
-    
-		if model_new.layers[i].count_params() != 0:
-        
-			model_new.layers[i].trainable = trainable_bools.pop()
-        
-			if load_layers_bools.pop() == True:
-				model_new.layers[i].set_weights(model.layers[i].get_weights())
-				print("Loading Layer" + str(i) + " from previous model.")
-			else:
-				print("Initializing Layer" + str(i)+ " from scratch")
-            
-		else:
-			model_new.layers[i].set_weights(model.layers[i].get_weights())
-
-	sgd = optimizers.SGD(lr=lr, momentum=momentum, decay=decay, nesterov=nesterov)
-	model_new.compile(loss=loss, optimizer=sgd, metrics=['accuracy']) 
-
-	callbacks_list = []
-	
-	if checkpoint_freq != 0:
-		checkpoint = ModelCheckpoint(files_save_path + 'model_{epoch:02d}.hdf5', monitor='val_loss', verbose=verbose, save_best_only=False, save_weights_only=False, mode='auto', period=checkpoint_freq)
-		callbacks_list.append(checkpoint)
-
-	csv_logger = CSVLogger(files_save_path + "metrics.csv", separator=',', append=False)
-	callbacks_list.append(csv_logger)
-	
-
-	model_new.fit(training_imgs, training_labels, batch_size=batch_size, epochs=epochs, verbose=verbose, validation_data=(validation_imgs,validation_labels), shuffle=True, callbacks=callbacks_list)
-
-	if save_model == True:
-		model_new.save(files_save_path + "trained_model.hdf5")
-
-	return model_new
+	return model
 
 
 ###########################################
