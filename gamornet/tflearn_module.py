@@ -1,32 +1,16 @@
-from keras.models import Sequential, load_model, clone_model
-from keras.layers import Dense, Flatten, Dropout, Activation, Input
-from keras.layers import Conv2D, MaxPooling2D
-from keras.initializers import VarianceScaling
-from keras import optimizers
-from keras.callbacks import ModelCheckpoint
-from keras.callbacks import CSVLogger
-from keras import backend as K
-from keras.engine.topology import Layer, InputSpec
-import wget
-import random
-import string
-import os
-import numpy as np
-
-
 import tflearn
 from tflearn.layers.core import input_data, dropout, fully_connected
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.normalization import local_response_normalization
 from tflearn.layers.estimator import regression
 from tflearn.optimizers import Nesterov,Momentum
+from keras import backend as K
 import wget
 import random
 import string
 import os
 import numpy as np
 import progressbar
-from keras import backend as K
 import time
 
 ############################################
