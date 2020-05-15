@@ -6,8 +6,6 @@ from tflearn.layers.estimator import regression
 from tflearn.optimizers import Nesterov,Momentum
 from keras import backend as K
 import wget
-import random
-import string
 import os
 import numpy as np
 import progressbar
@@ -116,7 +114,7 @@ def gamornet_build_model_tflearn(input_shape,trainable_bools = [True]*8,load_lay
 def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64,individual_arrays=False,trainable_bools = [True]*8,clear_session=False):
 
 	#TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.	
-	if clear_session == True:
+	if clear_session is True:
 		K.clear_session()
 
 	check_imgs_validity(img_array)
@@ -148,7 +146,7 @@ def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64
 
 	preds = np.array(preds) #converting to a numpy array for easier handling.
 
-	if individual_arrays == True:
+	if individual_arrays is True:
 		return preds[:,0],preds[:,1],preds[:,2] # 'disk_prob','unclass_prob','bulge_prob'
 	else:
 		return preds
@@ -158,7 +156,7 @@ def gamornet_predict_tflearn(img_array,model_load_path,input_shape,batch_size=64
 def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validation_labels,input_shape,files_save_path="./",epochs=100,max_checkpoints=1,batch_size=64,lr=0.0001,momentum=0.9,decay=0.0,nesterov=False,loss='categorical_crossentropy',load_model=False,model_load_path="./",save_model=True,show_metric=True,clear_session=False):
 
 	#TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.	
-	if clear_session == True:
+	if clear_session is True:
 		K.clear_session()
 	
 	check_imgs_validity(training_imgs)
@@ -169,7 +167,7 @@ def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validat
 	model = gamornet_build_model_tflearn(input_shape=input_shape)
 	
 
-	if nesterov == False:
+	if nesterov is False:
 		optimizer = Momentum(momentum=momentum,lr_decay=decay)
 	else:
 		optimizer = Nesterov(momentum=momentum,lr_decay=decay)
@@ -178,7 +176,7 @@ def gamornet_train_tflearn(training_imgs,training_labels,validation_imgs,validat
 	
 	model = tflearn.DNN(model, checkpoint_path = files_save_path + "check-", max_checkpoints=max_checkpoints)
  	
-	if load_model == True:
+	if load_model is True:
 		model = gamornet_load_model_tflearn(model,model_load_path)
 
 	model.fit(training_imgs, training_labels, n_epoch=epochs, validation_set=(validation_imgs,validation_labels), shuffle=True, show_metric=show_metric, batch_size=batch_size, snapshot_step=None, snapshot_epoch=save_model)
@@ -191,7 +189,7 @@ def gamornet_tl_tflearn(training_imgs,training_labels,validation_imgs,validation
 
 
 	#TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.	
-	if clear_session == True:
+	if clear_session is True:
 		K.clear_session()
 
 	check_imgs_validity(training_imgs)
@@ -201,7 +199,7 @@ def gamornet_tl_tflearn(training_imgs,training_labels,validation_imgs,validation
 
 	model = gamornet_build_model_tflearn(input_shape=input_shape,trainable_bools=trainable_bools,load_layers_bools=load_layers_bools)
 
-	if nesterov == False:
+	if nesterov is False:
 		optimizer = Momentum(momentum=momentum,lr_decay=decay)
 	else:
 		optimizer = Nesterov(momentum=momentum,lr_decay=decay)

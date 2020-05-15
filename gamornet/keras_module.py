@@ -1,12 +1,12 @@
-from keras.models import Sequential, load_model, clone_model
-from keras.layers import Dense, Flatten, Dropout, Activation, Input
+from keras.models import Sequential, clone_model
+from keras.layers import Dense, Flatten, Dropout
 from keras.layers import Conv2D, MaxPooling2D
 from keras.initializers import VarianceScaling
 from keras import optimizers
 from keras.callbacks import ModelCheckpoint
 from keras.callbacks import CSVLogger
 from keras import backend as K
-from keras.engine.topology import Layer, InputSpec
+from keras.engine.topology import Layer 
 import wget
 import random
 import string
@@ -217,7 +217,7 @@ def gamornet_predict_keras(img_array,model_load_path,input_shape,batch_size=64,i
 	preds = model.predict(img_array,batch_size = batch_size)
 	preds = np.array(preds) #converting to a numpy array for easier handling.
 	
-	if individual_arrays == True:
+	if individual_arrays is True:
 		return preds[:,0],preds[:,1],preds[:,2] # 'disk_prob','unclass_prob','bulge_prob'
 	else:
 		return preds
@@ -245,12 +245,12 @@ def gamornet_train_keras(training_imgs,training_labels,validation_imgs,validatio
 	csv_logger = CSVLogger(files_save_path + "metrics.csv", separator=',', append=False)
 	callbacks_list.append(csv_logger)
 	
-	if load_model == True:
+	if load_model is True:
 		model = gamornet_load_model_keras(model,model_load_path)
 
 	model.fit(training_imgs, training_labels, batch_size=batch_size, epochs=epochs, verbose=verbose, validation_data=(validation_imgs,validation_labels), shuffle=True, callbacks=callbacks_list)
 
-	if save_model == True:
+	if save_model is True:
 		model.save(files_save_path + "trained_model.hdf5")
 
 	return model
@@ -280,7 +280,7 @@ def gamornet_tl_keras(training_imgs,training_labels,validation_imgs,validation_l
         
 			model_new.layers[i].trainable = trainable_bools.pop()
         
-			if load_layers_bools.pop() == True:
+			if load_layers_bools.pop() is True:
 				model_new.layers[i].set_weights(model.layers[i].get_weights())
 				print("Loading Layer" + str(i) + " from previous model.")
 			else:
@@ -304,7 +304,7 @@ def gamornet_tl_keras(training_imgs,training_labels,validation_imgs,validation_l
 
 	model_new.fit(training_imgs, training_labels, batch_size=batch_size, epochs=epochs, verbose=verbose, validation_data=(validation_imgs,validation_labels), shuffle=True, callbacks=callbacks_list)
 
-	if save_model == True:
+	if save_model is True:
 		model_new.save(files_save_path + "trained_model.hdf5")
 
 	return model_new
