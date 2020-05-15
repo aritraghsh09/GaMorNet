@@ -14,7 +14,7 @@ import time
 ############################################
 ##########HELPER FUNCTIONS##################
 
-from keras_module import check_input_shape_validity, check_imgs_validity, check_labels_validity, check_bools_validity
+from gamornet.keras_module import check_input_shape_validity, check_imgs_validity, check_labels_validity, check_bools_validity
 
 
 def get_model_from_link_tflearn(base_link, file_names, model):
