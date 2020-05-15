@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [0.2.1] - 2020-05-15
+### Fixed
+- the tflearn_module now properly imports functions from the keras_module
 
 ## [0.2] - 2020-05-15
 ### Added
