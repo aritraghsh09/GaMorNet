@@ -155,14 +155,14 @@ class LocalResponseNormalization(Layer):
         super(LocalResponseNormalization, self).build(input_shape)
 
     def call(self, x, mask=None):
-        if K.image_dim_ordering == "th":
+        if K.image_data_format == "channels_first":
             _, f, r, c = self.shape
         else:
             _, r, c, f = self.shape
         squared = K.square(x)
         pooled = K.pool2d(squared, (self.n, self.n), strides=(1, 1),
                           padding="same", pool_mode="avg")
-        if K.image_dim_ordering == "th":
+        if K.image_data_format == "channels_first":
             summed = K.sum(pooled, axis=1, keepdims=True)
             averaged = self.alpha * K.repeat_elements(summed, f, axis=1)
         else:
