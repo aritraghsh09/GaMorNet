@@ -9,24 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-- updated LRN function in keras_module to remove dependancy on image_dim_ordering function of keras backend
 
 ### Removed
 
 ### Fixed
 
-## [0.2.1] - 2020-05-15
-### Fixed
-- the tflearn_module now properly imports functions from the keras_module
-
-## [0.2] - 2020-05-15
+## [0.2.2] - 2020-05-19
 ### Added
-- tflearn_module
-
-### Changed
-- Alterations to some of the inner working of the keras_module user facing functions.
-
-
-## [0.1] - 2020-05-12
-### Added
-- Initial Release of GaMorNet
+- Initial Release of gamornet-cpu
+- Version starts with 0.2.2 to match up with the GPU Version of GaMorNet
