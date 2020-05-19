@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
 	long_description = fh.read()
 
 setuptools.setup(
-	name="gamornet", # Replace with your own username
+	name="gamornet-cpu", # Replace with your own username
 	version="0.2.2",
 	author="Aritra Ghosh",
 	author_email="aritraghsh09@gmail.com",
@@ -20,7 +20,6 @@ setuptools.setup(
 	classifiers=[
 		"Programming Language :: Python :: 3",
 		"Development Status :: 4 - Beta",
-		"Environment :: GPU :: NVIDIA CUDA :: 10.1",
 		"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 		"Intended Audience :: Science/Research",
 		"Topic :: Scientific/Engineering :: Astronomy",
@@ -29,7 +28,7 @@ setuptools.setup(
 	packages=setuptools.find_packages(),
 	python_requires='~=3.3',
 	install_requires=[
-		"tensorflow-gpu ~=1.12",
+		"tensorflow-cpu ~=1.12",
 		"tflearn ~=0.3",
 		"keras ~=2.2",
 		"wget >=3.2",
