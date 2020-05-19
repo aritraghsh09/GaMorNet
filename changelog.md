@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-## [0.2.2] - 2020-05-19
+## [0.2.3] - 2020-05-19
 ### Added
 - Initial Release of gamornet-cpu
-- Version starts with 0.2.2 to match up with the GPU Version of GaMorNet
+- Version starts with 0.2.3 to match up with the GPU Version of GaMorNet

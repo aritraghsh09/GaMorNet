@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
 	name="gamornet-cpu", # Replace with your own username
-	version="0.2.2",
+	version="0.2.3",
 	author="Aritra Ghosh",
 	author_email="aritraghsh09@gmail.com",
 	description="A CNN to classify galaxies morphologically",
