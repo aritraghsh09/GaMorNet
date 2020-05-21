@@ -29,7 +29,7 @@ setuptools.setup(
 	packages=setuptools.find_packages(),
 	python_requires='~=3.3',
 	install_requires=[
-		"tensorflow-gpu ~=1.12",
+		"tensorflow-gpu ~=1.13",
 		"tflearn ~=0.3",
 		"keras ~=2.2",
 		"wget >=3.2",
