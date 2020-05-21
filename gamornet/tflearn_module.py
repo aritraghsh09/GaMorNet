@@ -184,7 +184,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     model = regression(model, optimizer=optimizer, loss=loss, learning_rate=lr)
 
     model = tflearn.DNN(model, checkpoint_path=files_save_path +
-                        "check-", max_checkpoints=max_checkpoints)
+                        "check", max_checkpoints=max_checkpoints)
 
     if load_model is True:
         model = gamornet_load_model_tflearn(model, model_load_path)
@@ -217,7 +217,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
     model = regression(model, optimizer=optimizer, loss=loss, learning_rate=lr)
 
     model = tflearn.DNN(model, checkpoint_path=files_save_path +
-                        "check-", max_checkpoints=max_checkpoints)
+                        "check", max_checkpoints=max_checkpoints)
 
     model = gamornet_load_model_tflearn(model, model_load_path)
 
