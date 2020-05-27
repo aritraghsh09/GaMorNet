@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - updated LRN function in keras_module to remove dependancy on image_dim_ordering function of keras backend
 - altered the naming scheme of saved tflearn models.
-- increased the flusing time for the gamornet_predict_tflearn function progressbar
+- increased the flushing time for the gamornet_predict_tflearn function progressbar
 
 ### Removed
 
