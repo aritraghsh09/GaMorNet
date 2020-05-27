@@ -144,7 +144,7 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
     num_batches = int(total_elements/batch_size)
 
     # Time to Flush all Print Statements before the progressbar output comes on
-    time.sleep(0.2)
+    time.sleep(0.3)
 
 
     for i in progressbar.progressbar(range(0, num_batches)):
