@@ -54,5 +54,5 @@ html_theme = 'default'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = []
 
-### Tgins that need to be set this way for RTD Integration ##
+### Things that need to be set this way for RTD Integration ##
 master_doc = 'index'
