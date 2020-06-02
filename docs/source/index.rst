@@ -3,11 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
+.. _about_gamornet:
+
 About GaMorNet
 ==============
-The Galaxy Morphology Network (GaMorNet) is a convolutional neural network which can classify galaxies as being disk-dominated, bulge-dominated or indeterminate based on their bulge to total light ratio. For more details about GaMorNet's design, how it was trained etc., please refer to :ref:`pub_and_other_data`.  
+The Galaxy Morphology Network (GaMorNet) is a convolutional neural network that can classify galaxies as being disk-dominated, bulge-dominated or indeterminate based on their bulge to total light ratio. GaMorNet doesn't need a large amount of training data and can work across different data-sets. For more details about GaMorNet's design, how it was trained etc., please refer to :ref:`pub_and_other_data`.  
 
-.. _first_contat:
+.. _first_contact:
 
 First contact with GaMorNet
 ---------------------------
@@ -20,8 +23,22 @@ GaMorNet's user-faced functions has been written in a way so that it's easy to s
    preds = gamornet_predict_keras(img_array, model_load_path='SDSS_tl', input_shape='SDSS')
 
 
-In order to get started with using GaMorNet, please first look at (getting started, tutorials followed by usage guide)
+In order to start using GaMorNet, please first look at the :ref:`getting_started` section for instructions on how to install GaMorNet. Thereafter, we recommend trying out the :ref:`tutorials` in order to get a handle on how to use GaMorNet. 
 
+Finally, you should have a look at the :ref:`usage_guide` for our recommendations on how to use GaMorNet on your data and the :ref:`api_docs` for detailed documentation of the different functions in the module. 
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents
+   :hidden:
+
+   self
+   getting_started
+   tutorials
+   usage_guide
+   api_docs
+   faq
 
 
 .. _pub_and_other_data:
@@ -31,6 +48,12 @@ Publication & Other Data
 You can look at this `ApJ paper <https://doi.org/10.3847/1538-4357/ab8a47>`_ to learn the details about GaMorNet's architecture, how it was trained, and other details not mentioned in this documentation. 
 
 We strongly suggest you read the above-mentioned publication if you are going to use our trained models for performing predictions or as the starting point for your training. 
+
+Public Data Release Elements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(links and instructions to trained models)
+
+
 
 Attribution Info.
 ^^^^^^^^^^^^^^^^^^^
@@ -52,10 +75,11 @@ Please cite the above mentioned publication if you make use of this software mod
       journal = {The Astrophysical Journal}
     }
 
+Additionally, if you want, please include the following text in the Software/Acknowledgment section.
 
-Links to Additional Resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-(links and instructions to trained models)
+.. code-block:: tex
+
+    This work uses trained models/software made available as a part of the Galaxy Morphology Network public data release. 
 
 
 License
@@ -73,13 +97,5 @@ Getting Help
 Please first have a look at the ..
 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Documentation  Contents:
 
-   getting_started
-   tutorials
-   usage_guide
-   api_docs
-   faq
 
