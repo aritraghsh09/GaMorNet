@@ -11,18 +11,16 @@ The Galaxy Morphology Network (GaMorNet) is a convolutional neural network which
 
 First contact with GaMorNet
 ---------------------------
+GaMorNet's user-faced functions has been written in a way so that it's easy to start using it even if you have not dealt with convolutional neural networks before. For. eg. to perform predictions on an array of SDSS images using our trained models, the following line of code is all you need. 
+
+.. code-block:: python
+
+   from gamornet.keras_module import gamornet_predict_keras
+
+   preds = gamornet_predict_keras(img_array, model_load_path='SDSS_tl', input_shape='SDSS')
 
 
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Documentation  Contents:
-
-   getting_started
-   tutorials
-   usage_guide
-   api_docs
-   faq
+In order to get started with using GaMorNet, please first look at (getting started, tutorials followed by usage guide)
 
 
 
@@ -60,7 +58,7 @@ Links to Additional Resources
 (links and instructions to trained models)
 
 
-LICENSE
+License
 ^^^^^^^^
 Copyright 2020 Aritra Ghosh & contributors
 
@@ -72,3 +70,16 @@ Developed by `Aritra Ghosh <http://ghosharitra.com>`_ and made available under a
 
 Getting Help
 ------------
+Please first have a look at the ..
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Documentation  Contents:
+
+   getting_started
+   tutorials
+   usage_guide
+   api_docs
+   faq
+
