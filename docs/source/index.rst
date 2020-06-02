@@ -3,18 +3,32 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to GaMorNet's documentation!
-====================================
+About GaMorNet
+==============
+
+
+First contact with GaMorNet
+===========================
+
+
+Publication & Other Data
+========================
+
+
+Getting Help
+============
+
+
+Sub-Section
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   getting_started
+   tutorials
+   api_docs
+   faq
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
