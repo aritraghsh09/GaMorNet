@@ -8,22 +8,21 @@ About GaMorNet
 
 
 First contact with GaMorNet
-===========================
+---------------------------
 
 
 Publication & Other Data
-========================
+------------------------
 
 
 Getting Help
-============
+------------
 
 
-Sub-Section
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Documentation  Contents:
 
    getting_started
    tutorials

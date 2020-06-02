@@ -6,8 +6,8 @@ Ways to Use GaMorNet
 --------------------
 
 
-Installtion
------------
+Installation
+-------------
 
 
 Complatibility with CUDA & cuDNN
