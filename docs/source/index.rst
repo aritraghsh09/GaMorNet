@@ -25,20 +25,7 @@ GaMorNet's user-faced functions has been written in a way so that it's easy to s
 
 In order to start using GaMorNet, please first look at the :ref:`getting_started` section for instructions on how to install GaMorNet. Thereafter, we recommend trying out the :ref:`tutorials` in order to get a handle on how to use GaMorNet. 
 
-Finally, you should have a look at the :ref:`usage_guide` for our recommendations on how to use GaMorNet on your data and the :ref:`api_docs` for detailed documentation of the different functions in the module. 
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents
-   :hidden:
-
-   self
-   getting_started
-   tutorials
-   usage_guide
-   api_docs
-   faq
+Finally, you should have a look at the :ref:`usage_guide` for our recommendations on how to use different element's of GaMorNet's public data release for your own work and the :ref:`api_docs` for detailed documentation of the different functions in the module. 
 
 
 .. _pub_and_other_data:
@@ -47,12 +34,9 @@ Publication & Other Data
 ------------------------
 You can look at this `ApJ paper <https://doi.org/10.3847/1538-4357/ab8a47>`_ to learn the details about GaMorNet's architecture, how it was trained, and other details not mentioned in this documentation. 
 
-We strongly suggest you read the above-mentioned publication if you are going to use our trained models for performing predictions or as the starting point for your training. 
+We strongly suggest you read the above-mentioned publication if you are going to use our trained models for performing predictions or as the starting point for training your own models.
 
-Public Data Release Elements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-(links and instructions to trained models)
-
+All the different elements of the public data release (including the new Keras models) are summarized in :ref:`usage_guide`.
 
 
 Attribution Info.
@@ -92,9 +76,26 @@ Developed by `Aritra Ghosh <http://ghosharitra.com>`_ and made available under a
 
 .. _getting_help:
 
-Getting Help
-------------
-Please first have a look at the ..
+Getting Help/Contributing
+--------------------------
+If you have a question, please first have a look at the :ref:`faq` section. If your question is not answered there, please send me an e-mail at this ``aritraghsh09`` GMail address.
+
+If you have spotted a bug in the code/documentation or you want to propose a new feature, please feel free to open an issue/a pull request on `GitHub <https://github.com/aritraghsh09/GaMorNet>`_
+
+
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents
+   :hidden:
+
+   self
+   getting_started
+   tutorials
+   usage_guide
+   api_docs
+   faq
 
 
 
