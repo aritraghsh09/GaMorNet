@@ -87,7 +87,6 @@ If you have spotted a bug in the code/documentation or you want to propose a new
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents
    :hidden:
 
    self
