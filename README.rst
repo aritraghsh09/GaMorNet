@@ -1,5 +1,3 @@
-GaMorNet (Galaxy Morphology Network)
-=====================================
 
 .. image:: https://readthedocs.org/projects/gamornet/badge/?version=latest
     :target: https://gamornet.readthedocs.io/en/latest/?badge=latest
@@ -21,6 +19,9 @@ GaMorNet (Galaxy Morphology Network)
     :target: https://github.com/aritraghsh09/GaMorNet/
     :alt: arXiv
 
+
+Galaxy Morphology Network (GaMorNet)
+=====================================
 
 GaMorNet is a Convolutional Neural Network based on AlexNet to classify galaxies morphologically. GaMorNet does not need a large amount of training data (as it is trained on simulations and then transfer-learned on a small portion of real data) and can be applied on multiple datasets. Till now, GaMorNet has been tested on ~100,000 SDSS g-band galaxies and ~20,000 CANDELS H-band galaxies and has a misclassification rate of <5%. 
 
