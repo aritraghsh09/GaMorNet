@@ -1,6 +1,6 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
 	long_description = fh.read()
 
 setuptools.setup(
@@ -10,7 +10,7 @@ setuptools.setup(
 	author_email="aritraghsh09@gmail.com",
 	description="A CNN to classify galaxies morphologically",
 	long_description=long_description,
-	long_description_content_type="text/markdown",
+	long_description_content_type="text/x-rst",
 	keywords="astrophysics astronomy galaxies convolutional neural networks morphological analysis morphology sdss candels",
 	url="http://gamornet.ghosharitra.com/",
 	project_urls={

@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Documentation for the Project
 
 ### Changed
 - updated LRN function in keras_module to remove dependancy on image_dim_ordering function of keras backend
