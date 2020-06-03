@@ -78,7 +78,7 @@ Developed by `Aritra Ghosh <http://ghosharitra.com>`_ and made available under a
 
 Getting Help/Contributing
 --------------------------
-If you have a question, please first have a look at the :ref:`faq` section. If your question is not answered there, please send me an e-mail at this ``aritraghsh09`` GMail address.
+If you have a question, please first have a look at the :ref:`faq` section. If your question is not answered there, please send me an e-mail at this ``aritraghsh09+gamornet@xxxxx.com`` GMail address.
 
 If you have spotted a bug in the code/documentation or you want to propose a new feature, please feel free to open an issue/a pull request on `GitHub <https://github.com/aritraghsh09/GaMorNet>`_
 
