@@ -1,27 +1,26 @@
-.. image:: https://readthedocs.org/projects/gamornet/badge/?version=latest
-:target: https://gamornet.readthedocs.io/en/latest/?badge=latest
-:alt: Documentation Status
-
-.. image:: https://img.shields.io/badge/license-GPL%20v3.0-blue
-:target: https://github.com/aritraghsh09/GaMorNet/blob/master/LICENSE
-:alt: License Information
-
-.. image:: https://badge.fury.io/py/gamornet.svg
-:target: https://pypi.org/project/gamornet/
-:alt: PyPI version
-
-.. image:: https://img.shields.io/badge/doi-10.3847%2F1538--4357%2Fab8a47-blue
-:target: https://doi.org/10.3847/1538-4357/ab8a47
-:alt: DOI Link
-
-.. image:: https://img.shields.io/badge/arXiv-Coming%20Soon-blue
-:target: https://github.com/aritraghsh09/GaMorNet/
-:alt: arXiv
-
-
-
 GaMorNet (Galaxy Morphology Network)
 =====================================
+
+.. image:: https://readthedocs.org/projects/gamornet/badge/?version=latest
+    :target: https://gamornet.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
+.. image:: https://img.shields.io/badge/license-GPL%20v3.0-blue
+    :target: https://github.com/aritraghsh09/GaMorNet/blob/master/LICENSE
+    :alt: License Information
+
+.. image:: https://badge.fury.io/py/gamornet.svg
+    :target: https://pypi.org/project/gamornet/
+    :alt: PyPI version
+
+.. image:: https://img.shields.io/badge/doi-10.3847%2F1538--4357%2Fab8a47-blue
+    :target: https://doi.org/10.3847/1538-4357/ab8a47
+    :alt: DOI Link
+
+.. image:: https://img.shields.io/badge/arXiv-Coming%20Soon-blue
+    :target: https://github.com/aritraghsh09/GaMorNet/
+    :alt: arXiv
+
 
 GaMorNet is a Convolutional Neural Network based on AlexNet to classify galaxies morphologically. GaMorNet does not need a large amount of training data (as it is trained on simulations and then transfer-learned on a small portion of real data) and can be applied on multiple datasets. Till now, GaMorNet has been tested on ~100,000 SDSS g-band galaxies and ~20,000 CANDELS H-band galaxies and has a misclassification rate of <5%. 
 
