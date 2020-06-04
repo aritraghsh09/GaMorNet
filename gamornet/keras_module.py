@@ -220,6 +220,31 @@ def gamornet_build_model_keras(input_shape):
 
 def gamornet_predict_keras(img_array, model_load_path, input_shape, batch_size=64, individual_arrays=False):
 
+    """
+    Uses a `keras` model to perform predictions on supplied images. 
+
+    Parameters
+    ----------
+
+    img_array: np.ndarray[nsamples,x,y,ndim]
+        The array of images on which the predictions are to be performed. We insist on numpy arrays as many of the 
+        underlying deep learning frameworks work better with numpy arrays compared to other array-like elements. 
+
+    model_load_path: str 
+        Path to the saved model.
+        This parameter can take the following special values
+        
+        #. `SDSS_sim` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        #. `SDSS_tl` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
+        #. `CANDELS_sim` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        #. `CANDELS_tl` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
+
+    input_shape: str
+        The input shape to be used for the input images.
+
+
+    """
+
     check_imgs_validity(img_array)
 
     model = gamornet_build_model_keras(input_shape=input_shape)
@@ -238,7 +263,9 @@ def gamornet_predict_keras(img_array, model_load_path, input_shape, batch_size=6
         return preds
 
 
-def gamornet_train_keras(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, files_save_path="./", epochs=100, checkpoint_freq=0, batch_size=64, lr=0.0001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', load_model=False, model_load_path="./", save_model=True, verbose=1):
+def gamornet_train_keras(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, files_save_path="./", 
+                         epochs=100, checkpoint_freq=0, batch_size=64, lr=0.0001, momentum=0.9, decay=0.0, nesterov=False, 
+                         loss='categorical_crossentropy', load_model=False, model_load_path="./", save_model=True, verbose=1):
 
     check_imgs_validity(training_imgs)
     check_imgs_validity(validation_imgs)
@@ -274,7 +301,9 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
     return model
 
 
-def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, load_layers_bools=[True]*8, trainable_bools=[True]*8, model_load_path="./", files_save_path="./", epochs=100, checkpoint_freq=0, batch_size=64, lr=0.00001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', save_model=True, verbose=1):
+def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, load_layers_bools=[True]*8, 
+                      trainable_bools=[True]*8, model_load_path="./", files_save_path="./", epochs=100, checkpoint_freq=0, batch_size=64, 
+                      lr=0.00001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', save_model=True, verbose=1):
 
     check_imgs_validity(training_imgs)
     check_imgs_validity(validation_imgs)
