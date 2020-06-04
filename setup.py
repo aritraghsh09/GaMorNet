@@ -7,7 +7,7 @@ with open("README.rst", "r") as fh:
 setuptools.setup(
 	name="gamornet", # Replace with your own username
 	version=gamornet.__version__,
-	author="Aritra Ghosh",
+	author=gamornet.__author__,
 	author_email="aritraghsh09@gmail.com",
 	description="A CNN to classify galaxies morphologically",
 	long_description=long_description,
