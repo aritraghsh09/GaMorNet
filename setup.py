@@ -1,11 +1,12 @@
 import setuptools
+import gamornet
 
 with open("README.rst", "r") as fh:
 	long_description = fh.read()
 
 setuptools.setup(
 	name="gamornet", # Replace with your own username
-	version="0.2.2",
+	version=gamornet.__version__,
 	author="Aritra Ghosh",
 	author_email="aritraghsh09@gmail.com",
 	description="A CNN to classify galaxies morphologically",
