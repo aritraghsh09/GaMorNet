@@ -5,7 +5,7 @@ import gamornet
 
 # -- Project information -----------------------------------------------------
 
-project = 'GaMorNet'
+project = 'gamornet'
 copyright = gamornet.__copyright__
 author = gamornet.__author__
 

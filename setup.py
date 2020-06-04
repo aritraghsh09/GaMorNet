@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 	long_description = fh.read()
 
 setuptools.setup(
-	name="gamornet", # Replace with your own username
+	name="gamornet",
 	version=gamornet.__version__,
 	author=gamornet.__author__,
 	author_email="aritraghsh09@gmail.com",
