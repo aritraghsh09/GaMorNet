@@ -68,7 +68,7 @@ Additionally, if you want, please include the following text in the Software/Ack
 
 License
 ^^^^^^^^
-Copyright 2020 Aritra Ghosh & contributors
+|copyright|
 
 Developed by `Aritra Ghosh <http://ghosharitra.com>`_ and made available under a `GNU GPL v3.0 <https://github.com/aritraghsh09/GaMorNet/blob/master/LICENSE>`_ license. 
 
