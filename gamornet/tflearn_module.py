@@ -134,8 +134,8 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         underlying deep learning frameworks work better with numpy arrays compared to other array-like elements. 
 
     model_load_path: str 
-        Path to the saved model. Note that tflearn models are usually consist of three files in the format <file_name>.data,
-        <file_name>.info, <file_name>.meta). In this path simply specify <file_name>.
+        Path to the saved model. Note that tflearn models are usually consist of three files in the format file_name.``data``,
+        file_name.``info``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
         
         This parameter can take the following special values
 

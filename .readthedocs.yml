@@ -15,7 +15,8 @@ python:
        - requirements: docs/requirements.txt 
 
 # Installing just the gamornet-cpu as a dependency is a faster way
-# to build on RTD. The below method is much slower.
+# to build on RTD. The below method is much slower and memory-heavy
+# causing it to crash/timeout often on RTD.
 #       - method: setuptools
 #         path: ./ 
 
