@@ -121,7 +121,31 @@ def gamornet_build_model_tflearn(input_shape, trainable_bools=[True]*8, load_lay
     return model
 
 
-def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size=64, individual_arrays=False, trainable_bools=[True]*8, clear_session=False):
+def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size=64, individual_arrays=False, trainable_bools=[True]*8, 
+                             clear_session=False):
+
+    """
+    Uses a `tflearn` model to perform predictions on supplied images. 
+
+    Parameters
+    ----------
+    img_array: np.ndarray[nsamples, x, y, ndim]
+        The array of images on which the predictions are to be performed. We insist on numpy arrays as many of the 
+        underlying deep learning frameworks work better with numpy arrays compared to other array-like elements. 
+
+    model_load_path: str 
+        Path to the saved model. Note that tflearn models are usually consist of three files in the format file_name.``data``,
+        file_name.``info``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+        
+        This parameter can take the following special values
+
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
+
+
+    """
 
     # TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.
     if clear_session is True:
@@ -144,7 +168,9 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
     num_batches = int(total_elements/batch_size)
 
     # Time to Flush all Print Statements before the progressbar output comes on
-    time.sleep(0.1)
+    time.sleep(0.3)
+
+
     for i in progressbar.progressbar(range(0, num_batches)):
         ll = i*batch_size
         ul = (i+1)*batch_size
@@ -163,7 +189,9 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         return preds
 
 
-def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, files_save_path="./", epochs=100, max_checkpoints=1, batch_size=64, lr=0.0001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', load_model=False, model_load_path="./", save_model=True, show_metric=True, clear_session=False):
+def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, files_save_path="./", epochs=100, 
+                           max_checkpoints=1, batch_size=64, lr=0.0001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', 
+                           load_model=False, model_load_path="./", save_model=True, show_metric=True, clear_session=False):
 
     # TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.
     if clear_session is True:
@@ -184,7 +212,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     model = regression(model, optimizer=optimizer, loss=loss, learning_rate=lr)
 
     model = tflearn.DNN(model, checkpoint_path=files_save_path +
-                        "check-", max_checkpoints=max_checkpoints)
+                        "check", max_checkpoints=max_checkpoints)
 
     if load_model is True:
         model = gamornet_load_model_tflearn(model, model_load_path)
@@ -195,7 +223,10 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     return model
 
 
-def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, load_layers_bools=[True]*8, trainable_bools=[True]*8, model_load_path="./", files_save_path="./", epochs=100, max_checkpoints=1, batch_size=64, lr=0.00001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', save_model=True, show_metric=True, clear_session=False):
+def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validation_labels, input_shape, load_layers_bools=[True]*8, 
+                        trainable_bools=[True]*8, model_load_path="./", files_save_path="./", epochs=100, max_checkpoints=1, batch_size=64, 
+                        lr=0.00001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', save_model=True, 
+                        show_metric=True, clear_session=False):
 
     # TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.
     if clear_session is True:
@@ -217,7 +248,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
     model = regression(model, optimizer=optimizer, loss=loss, learning_rate=lr)
 
     model = tflearn.DNN(model, checkpoint_path=files_save_path +
-                        "check-", max_checkpoints=max_checkpoints)
+                        "check", max_checkpoints=max_checkpoints)
 
     model = gamornet_load_model_tflearn(model, model_load_path)
 
