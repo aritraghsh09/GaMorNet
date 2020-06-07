@@ -28,4 +28,5 @@ The three major user oriented functions happen to be :func:`gamornet.tflearn_mod
 
 .. autofunction:: gamornet.tflearn_module.gamornet_predict_tflearn
 
+
 .. autofunction:: gamornet.tflearn_module.gamornet_train_tflearn
