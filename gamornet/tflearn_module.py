@@ -144,6 +144,50 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
+    input_shape: tuple of ints (x, y, ndim) or allowed str
+        The shape of the images being used. The parameter can also take the following special values:-
+
+        * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
+        * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
+
+    batch_size: int
+        This variable specific how many images will be processed in a single batch. Set this value to lower than the default
+        if you have limited memory availability. This doesn't affect the predictions in any way. 
+
+    individual_arrays: bool
+        If set to True, this will unpack the three returned arrays 
+
+    trainable_bools: array of bools or allowed str
+        This variable is used to identify which of the 5 convolutional and 3 fully-connected layers of GaMorNet were 
+        set to trainable during the training phase of the model (which is now being used for prediction)
+
+        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see 
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        layers and the last three are the fully connected layers.  
+
+        This parameter can also take the following special values which are handy when you are using our models to
+        perform predictions:-
+
+        * ``train_bool_SDSS`` - Sets the bools according to what was done for the SDSS data in Ghosh et. al. (2020)
+        * ``train_bool_CANDELS``- Sets the bools according to what was done for the CANDELS data in Ghosh et. al. (2020)
+
+    clear_session: bool
+        If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a 
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names 
+        leading to conflicts)
+
+        Note that, if set to True, you will lose access to any other graphs you may have run before. 
+        
+
+    Returns
+    -------
+    predicted probabilities: array_like
+        The returned array consists of the probability for each galaxy to be disk-dominated, indeterminate and bulge-dominated 
+        respectively [disk_prob,indet_prob,bulge_prob].If individual arrays are set to True, the single array is unpacked 
+        and returned  as three separate arrays in the same order. 
+
+        The ordering of individual elements in this array corresponds to the array of images fed in. 
+
 
     """
 
