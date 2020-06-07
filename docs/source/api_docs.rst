@@ -15,6 +15,9 @@ The three major user oriented functions happen to be :func:`gamornet.keras_modul
 .. autofunction:: gamornet.keras_module.gamornet_predict_keras
 
 
+.. autofunction:: gamornet.keras_module.gamornet_train_keras
+
+
 
 TFLearn Module
 --------------
@@ -24,3 +27,5 @@ TFLearn Module
 The three major user oriented functions happen to be :func:`gamornet.tflearn_module.gamornet_predict_tflearn`, :func:`gamornet.tflearn_module.gamornet_train_tflearn` and :func:`gamornet.tflearn_module.gamornet_tl_tflearn`
 
 .. autofunction:: gamornet.tflearn_module.gamornet_predict_tflearn
+
+.. autofunction:: gamornet.tflearn_module.gamornet_train_tflearn
