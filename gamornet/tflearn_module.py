@@ -168,8 +168,8 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         This parameter can also take the following special values which are handy when you are using our models to
         perform predictions:-
 
-        * ``train_bool_SDSS`` - Sets the bools according to what was done for the SDSS data in Ghosh et. al. (2020)
-        * ``train_bool_CANDELS``- Sets the bools according to what was done for the CANDELS data in Ghosh et. al. (2020)
+        * ``train_bools_SDSS`` - Sets the bools according to what was done for the SDSS data in Ghosh et. al. (2020)
+        * ``train_bools_CANDELS``- Sets the bools according to what was done for the CANDELS data in Ghosh et. al. (2020)
 
     clear_session: bool
         If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a 
@@ -312,7 +312,9 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     nesterov: bool
         Whether to apply Nesterov momentum or not. 
 
-    loss: allowed str
+    loss: allowed str or function
+        The loss function to be used. If using the string option, you need to supply the name of 
+        the loss function. This can be set to be any loss available in ``tflearn``
 
     load_model: bool
         Whether you want to start the training from a previously saved model. 
@@ -348,10 +350,9 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     --------
 
     Trained TFLearn Model: TFLearn ``models.dnn.DNN`` class
-    
-
 
     """
+
 
     # TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.
     if clear_session is True:
@@ -387,6 +388,149 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
                         trainable_bools=[True]*8, model_load_path="./", files_save_path="./", epochs=100, max_checkpoints=1, batch_size=64, 
                         lr=0.00001, momentum=0.9, decay=0.0, nesterov=False, loss='categorical_crossentropy', save_model=True, 
                         show_metric=True, clear_session=False):
+
+    """
+    Performs Transfer Learning (TL) using a previously trained GaMorNet model. 
+
+    Parameters
+    -----------
+
+    training_imgs: Numpy ndarray [nsamples,x,y,ndim]
+        The array of images on which are to be used for the TL process. We insist on numpy arrays 
+        as many of the underlying deep learning frameworks work better with numpy arrays compared to 
+        other array-like elements.
+
+    training_labels: Numpy ndarray [nsamples,label_arrays]
+        The truth labels for each of the TL images. The supplied labels must be in the one-hot encoding 
+        format. We reproduce below what each individual label array should look like:-
+
+        * Disk-dominated - ``[1,0,0]``
+        * Indeterminate -  ``[0,1,0]``
+        * Bulge-dominated - ``[0,0,1]``
+
+    validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
+        The array of images on which are to be used for the validation process. We insist on numpy arrays 
+        as many of the underlying deep learning frameworks work better with numpy arrays compared to 
+        other array-like elements.
+
+    validation_labels: Numpy ndarray [nsamples,label_arrays]
+        The truth labels for each of the validation images. The supplied labels must be in the one-hot encoding 
+        format. We reproduce below what each individual label array should look like:-
+
+        * Disk-dominated - ``[1,0,0]``
+        * Indeterminate -  ``[0,1,0]``
+        * Bulge-dominated - ``[0,0,1]``
+
+    input_shape: tuple of ints (x, y, ndim) or allowed str
+        The shape of the images being used. The parameter can also take the following special values:-
+
+        * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
+        * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
+
+    load_layers_bools: array of bools
+        This variable is used to identify which of the 5 convolutional and 3 fully-connected layers of GaMorNet will be 
+        loaded during the transfer learning process from the supplied starting model. The rest of the layers will be
+        initialized from scratch.
+
+        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see 
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        layers and the last three are the fully connected layers.  
+
+        This parameter can also take the following special values which are handy when you are using our models to
+        perform predictions:-
+
+        * ``load_bools_SDSS`` - Sets the bools according to what was done for the SDSS data in Ghosh et. al. (2020)
+        * ``load_bools_CANDELS``- Sets the bools according to what was done for the CANDELS data in Ghosh et. al. (2020)
+
+    trainable_bools: array of bools
+        This variable is used to identify which of the 5 convolutional and 3 fully-connected layers of GaMorNet will be 
+        trainable during the transfer learning process. The rest are frozen at the values loaded from the previous
+        model.
+
+        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see 
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        layers and the last three are the fully connected layers.  
+
+        This parameter can also take the following special values which are handy when you are using our models to
+        perform predictions:-
+
+        * ``train_bools_SDSS`` - Sets the bools according to what was done for the SDSS data in Ghosh et. al. (2020)
+        * ``train_bools_CANDELS``- Sets the bools according to what was done for the CANDELS data in Ghosh et. al. (2020)
+
+    model_load_path: str
+        Path to the saved model, which will serve as the starting point for transfer learning. Note that 
+        tflearn models are usually consist of three files in the format file_name.``data``,
+        file_name.``info``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+
+        This parameter can also take the following special values
+        
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
+
+    files_save_path: str
+        The full path to the location where the model generated during the training process are to be 
+        saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
+        will result in model files of the form ``checkpoint.meta", ``checkpoint.data`` and
+        ``checkpoint.info`` being saved. 
+
+        Set this to `/dev/null` on a unix system if you don't want to save the output. 
+
+    epochs: int
+        The number of epochs for which you want to training the model. 
+
+    max_checkpoints: int
+        TFLearn saves the model at the end of each epoch. This parameter controls how many of the 
+        most recent models are saved. For eg. setting this to 2, will save the model state during the 
+        most recent two epochs.
+
+    batch_size: int
+        This variable specifies how many images will be processed in a single batch. This is a 
+        hyperparameter. The default value is a good starting point
+
+    lr: float
+        This is the learning rate to be used during the training process. This is a 
+        hyperparameter that should be tuned during the training process. The default value is a good
+        starting point.
+
+    momentum: float
+        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet. 
+        This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a 
+        hyperparameter. The default value is a good starting point. 
+
+    decay: float
+        The amount of learning rate decay to be applied over each update. 
+
+    nesterov: bool
+        Whether to apply Nesterov momentum or not. 
+
+    loss: allowed str or function
+        The loss function to be used. If using the string option, you need to supply the name of 
+        the loss function. This can be set to be any loss available in ``tflearn``
+
+    save_model: bool
+        Whether you want to save the model files at each epoch during training. This
+        parameter should be used in conjunction with  ``max_checkpoints`` to configure
+        how many of the saved model files are preserved till the end. 
+
+    show_metric: bool
+        Whether to display the training/testing metrics during training.
+
+    clear_session: bool
+        If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a 
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names 
+        leading to conflicts)
+
+        Note that, if set to True, you will lose access to any other graphs you may have run before. 
+
+
+    Returns
+    --------
+
+    Trained TFLearn Model: TFLearn ``models.dnn.DNN`` class
+        
+    """
 
     # TFLearn Loads graphs from memory by name, hence it's always advisable to set this to True if using in a Notebook.
     if clear_session is True:
