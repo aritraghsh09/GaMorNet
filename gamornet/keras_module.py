@@ -364,15 +364,25 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
     loss: allowed str
 
     load_model: bool
-        Whether you want to start 
+        Whether you want to start the training from a previously saved model. 
+
+        We strongly recommend using the ``gamornet_tl_keras`` function for more 
+        control over the process when starting the training from a previously
+        saved model.
 
     model_load_path: str
         Required `iff load_model ==True`. The path to the saved model. 
 
-    save_model:
+    save_model: bool
+        Whether you want to save the model in its final trained state. 
 
-    verbose: 
+        Note that this parameter does not affect the models saved by the
+        ``checkpoint_freq`` parameter
 
+    verbose: {0, 1, 2}
+        The level of verbosity you want from Keras during the training process. 
+        0 = silent, 1 = progress bar, 2 = one line per epoch. 
+        
 
     Returns
     --------

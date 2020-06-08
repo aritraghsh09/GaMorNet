@@ -277,12 +277,79 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
 
     files_save_path: str
-        The full path to the location where files generated during the training process are to be saved. 
+        The full path to the location where the model generated during the training process are to be 
+        saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
+        will result in model files of the form ``checkpoint.meta", ``checkpoint.data`` and
+        ``checkpoint.info`` being saved. 
 
         Set this to `/dev/null` on a unix system if you don't want to save the file(s)
 
     epochs: int
         The number of epochs for which you want to training the model. 
+
+    max_checkpoints: int
+        TFLearn saves the model at the end of each epoch. This parameter controls how many of the 
+        most recent models are saved. For eg. setting this to 2, will save the model state during the 
+        most recent two epochs. 
+
+    batch_size: int
+        This variable specifies how many images will be processed in a single batch. This is a 
+        hyperparameter. The default value is a good starting point
+
+    lr: float
+        This is the learning rate to be used during the training process. This is a 
+        hyperparameter that should be tuned during the training process. The default value is a good
+        starting point.
+
+    momentum: float
+        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet. 
+        This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a 
+        hyperparameter. The default value is a good starting point. 
+
+    decay: float
+        The amount of learning rate decay to be applied over each update. 
+
+    nesterov: bool
+        Whether to apply Nesterov momentum or not. 
+
+    loss: allowed str
+
+    load_model: bool
+        Whether you want to start the training from a previously saved model. 
+
+        We strongly recommend using the ``gamornet_tl_keras`` function for more 
+        control over the process when starting the training from a previously
+        saved model.
+
+    model_load_path: str
+        Required `iff load_model ==True`. The path to the saved model.
+
+        Note that tflearn models are usually consist of three files in the format 
+        file_name.``data``, file_name.``info``, file_name.``meta``. For this parameter,
+        simply specify file_path/file_name.
+
+    save_model: bool
+        Whether you want to save the model files at each epoch during training. This
+        parameter should be used in conjunction with  ``max_checkpoints`` to configure
+        how many of the saved model files are preserved till the end. 
+
+    show_metric: bool
+        Whether to display the training/testing metrics during training.
+
+    clear_session: bool
+        If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a 
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names 
+        leading to conflicts)
+
+        Note that, if set to True, you will lose access to any other graphs you may have run before. 
+
+
+    Returns
+    --------
+
+    Trained TFLearn Model: TFLearn ``models.dnn.DNN`` class
+    
+
 
     """
 
