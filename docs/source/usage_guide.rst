@@ -1,11 +1,38 @@
 .. _usage_guide:
 
-PDR Usage Guide
-===============
+Data Release Guide
+===================
 
 If you are looking for information about the various ways you can use GaMorNet (running on a CPU v/s GPU v/s the cloud) or installation instructions, please have a look at 
 :ref:`getting_started`. This section summarizes different aspects of the public data release and provides some advice on the applicability of GaMorNet for various tasks. 
 
+
+.. _usage_advice:
+
+Usage Advice
+-------------
+How you will use the public data release of GaMorNet strongly depends on the task at hand. 
+
+* If you are looking for predictions of the SDSS g-band and CANDELS H-band dataset of Ghosh et. al. (2020), look at :ref:`pred_tables` on how to access the prediction tables.
+
+* If you have SDSS g-band and CANDELS H-band data that we haven't classified, consider using the final trained models that we have released. You can manually download these models from :ref:`trained_models` or use the :func:`gamornet_predict_keras`/:func:`gamornet_predict_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs`. 
+
+* If you have SDSS and CANDELS data other than g-band and H-band that you want to classify, 
+
+    * if the data are in nearby bands, we recommend using the :func:`gamornet_tl_keras`/:func:`gamornet_tl_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs` to perform transfer learning. You could choose to start the transfer learning from our simulation-only or final trained models. In case, you want to download these manually, see :ref:`trained_models`.
+
+    * alternatively, you could also train a network from scratch using :func:`gamornet_train_keras`/:func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
+
+* If you have some other data that you want to classify, train a network from scratch using :func:`gamornet_train_keras`/:func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
+
+
+
+If you are not sure about something, please look at this documentation carefully and contact us using the information available at :ref:`getting_help`.
+
+.. important::
+
+    GaMorNet is best utilized when you have tens or tens of thousands of images to classify. If you only have a handful of images you want to look at in greater detail, your purposes in all probability will be served better by a 
+    standalone light profile fitting code. 
 
 
 .. _pdr_summary:
@@ -137,27 +164,84 @@ The probability thresholds that were used to generate the prediction tables as w
    For more information about the impact of probability thresholds on the results, please refer to Section 4.1 of the paper
 
 
+.. _ftp_server:
+
+FTP Server
+^^^^^^^^^^^
+
+All components of the public data release are hosted on the Yale Astronomy FTP server ``ftp.astro.yale.edu``. There are multiple ways you can access the FTP server
+and we summarize some of the methods below.
+
+**Using Linux Command Line** ::
+
+    ftp ftp.astro.yale.edu
+    cd pub/aghosh/<appropriate_subdirectory>
+
+If prompted for a username, try ``anonymous`` and keep the password field blank.
+
+**Using a Browser**
+
+Navigate to ``ftp://ftp.astro.yale.edu/pub/aghosh/<appropriate_subdirectory>``
+
+
+**Using Finder on OSX**
+
+Open Finder, and then choose Go :math:`\Rightarrow` Connect to Server (or command + K) and enter ``ftp://ftp.astro.yale.edu/pub/aghosh/``. Choose to connect as 
+``Guest`` when prompted. 
+
+Thereafter, navigate to the appropriate subdirectory. 
+
 
 .. _pred_tables:
 
 Prediction Tables
 ^^^^^^^^^^^^^^^^^^
 The predicted probabilities (of being disk-dominated, bulge- dominated, or indeterminate) and the final classifications for all of the galaxies 
-in the SDSS and CANDELS test sets in Ghosh et. al. 2020, as determined by GAMORNET-S and -C, are made available as .txt files. 
-These tables are the full versions of Tables 4 and 6 in the paper. 
+in the SDSS and CANDELS test sets in Ghosh et. al. (2020), as determined by GaMorNet, are made available as .txt files. 
+These tables are the full versions of Tables 4 and 6 in the paper. The appropriate sub-directories of the :ref:`ftp_server` are mentioned below:-
+
+*TFLearn*
+
+* SDSS dataset predictions :math:`\Rightarrow` `/gamornet/pred_tables/pred_table_sdss.txt`
+
+* CANDELS dataset predictions :math:`\Rightarrow` `/gamornet/pred_tables/pred_table_candels.txt`
+
+*Keras*
+
+* SDSS dataset predictions :math:`\Rightarrow` `/gamornet_keras/pred_tables/pred_table_sdss.txt`
+
+* CANDELS dataset predictions :math:`\Rightarrow` `/gamornet_keras/pred_tables/pred_table_candels.txt`
 
 
 .. _trained_models:
 
 Trained Models
 ^^^^^^^^^^^^^^^
+Note that the functions :func:`gamornet_predict_keras`, :func:`gamornet_predict_tflearn` automatically download and use the trained models when the correct
+parameters are passed to them. However, in case you want to just download the model files for yourself, navigate to the appropriate sub-directories on the
+:ref:`ftp_server` as mentioned below. For more information about these models, please refer to Ghosh et. al. (2020) and see :ref:`usage_advice`. 
+
+*TFLearn*
+
+* SDSS model trained only on simulations :math:`\Rightarrow` `/gamornet/trained_models/SDSS/sim_trained/`
+
+* SDSS model trained on simulations and real data :math:`\Rightarrow` `/gamornet/trained_models/SDSS/tl/`
+
+* CANDELS model trained only on simulations :math:`\Rightarrow` `/gamornet/trained_models/CANDELS/sim_trained/`
+
+* CANDELS model trained on simulations and real data :math:`\Rightarrow` `/gamornet/trained_models/CANDELS/tl/`
+
+*Keras*
+
+* SDSS model trained only on simulations :math:`\Rightarrow` `/gamornet_keras/trained_models/SDSS/sim_trained/`
+
+* SDSS model trained on simulations and real data :math:`\Rightarrow` `/gamornet_keras/trained_models/SDSS/tl/`
+
+* CANDELS model trained only on simulations :math:`\Rightarrow` `/gamornet_keras/trained_models/CANDELS/sim_trained/`
+
+* CANDELS model trained on simulations and real data :math:`\Rightarrow` `/gamornet_keras/trained_models/CANDELS/tl/`
 
 
-.. _usage_advice:
-
-Usage Advice
--------------
-Here is a brief summary of the different ways you can use the 
 
 
 .. |Ghosh et. al. (2020)| replace:: Ghosh et. al. (2020)
