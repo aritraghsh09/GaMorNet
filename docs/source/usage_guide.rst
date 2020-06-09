@@ -1,7 +1,7 @@
 .. _usage_guide:
 
-Data Release Guide
-===================
+Public Data Release Handbook
+=============================
 
 If you are looking for information about the various ways you can use GaMorNet (running on a CPU v/s GPU v/s the cloud) or installation instructions, please have a look at 
 :ref:`getting_started`. This section summarizes different aspects of the public data release and provides some advice on the applicability of GaMorNet for various tasks. 
