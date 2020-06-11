@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+## [0.3.1] - 2020-06-10
+
+### Fixed
+- gamornet_predict_tflearn can handle the situation now when batch_size > number of images
 
 ## [0.3] - 2020-06-04
 
