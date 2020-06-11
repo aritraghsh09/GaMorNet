@@ -220,8 +220,11 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         ul = (i+1)*batch_size
         preds.extend(model.predict(img_array[ll:ul]))
 
-    if ul != len(img_array):
-        # for the last partial batch
+    
+    if num_batches == 0: #when batch_size > number of images
+        preds.extend(model.predict(img_array[0:len(img_array)]))
+
+    elif ul != len(img_array):# for the last partial batch
         preds.extend(model.predict(img_array[ul:len(img_array)]))
 
     preds = np.array(preds)  # converting to a numpy array for easier handling.
