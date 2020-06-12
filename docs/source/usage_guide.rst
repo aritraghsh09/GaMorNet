@@ -15,13 +15,13 @@ How you will use the public data release of GaMorNet strongly depends on the tas
 
 * If you are looking for predictions of the SDSS g-band and CANDELS H-band dataset of Ghosh et. al. (2020), look at :ref:`pred_tables` on how to access the prediction tables.
 
-* If you have SDSS g-band and CANDELS H-band data that we haven't classified, consider using the final trained models that we have released. You can manually download these models from :ref:`trained_models` or use the :func:`gamornet_predict_keras`/:func:`gamornet_predict_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs`. 
+* If you have SDSS g-band and CANDELS H-band data that we haven't classified, use the final trained models (on simulations + real data) that we have released. You can manually download these models from :ref:`trained_models` or use the :func:`gamornet_predict_keras`/:func:`gamornet_predict_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs`. 
 
 * If you have SDSS and CANDELS data other than g-band and H-band that you want to classify, 
 
-    * if the data are in nearby bands, we recommend using the :func:`gamornet_tl_keras`/:func:`gamornet_tl_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs` to perform transfer learning. You could choose to start the transfer learning from our simulation-only or final trained models. In case, you want to download these manually, see :ref:`trained_models`.
+    * if the data are in nearby bands (i.e. near g-band for SDSS and H-band for CANDELS), we recommend using the :func:`gamornet_tl_keras`/:func:`gamornet_tl_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs` to perform transfer learning. We recommend starting the transfer learning process from both our simulation-only and final trained models and choosing one that maximizes the accuracy on your validation set. In case, you want to download the models manually, see :ref:`trained_models`.
 
-    * alternatively, you could also train a network from scratch using :func:`gamornet_train_keras`/:func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
+    * if you believe that your data is significantly different in resolution or any other photometric aspect, you could also train a network from scratch using :func:`gamornet_train_keras`/:func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
 
 * If you have some other data that you want to classify, train a network from scratch using :func:`gamornet_train_keras`/:func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
 
