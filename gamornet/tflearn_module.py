@@ -135,7 +135,7 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
 
     model_load_path: str 
         Path to the saved model. Note that tflearn models are usually consist of three files in the format file_name.``data``,
-        file_name.``info``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+        file_name.`.index``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
         
         This parameter can take the following special values
 
@@ -283,7 +283,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         The full path to the location where the model generated during the training process are to be 
         saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
         will result in model files of the form ``checkpoint.meta", ``checkpoint.data`` and
-        ``checkpoint.info`` being saved. 
+        ``checkpoint.index`` being saved. 
 
         Set this to `/dev/null` on a unix system if you don't want to save the file(s)
 
@@ -330,7 +330,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         Required `iff load_model ==True`. The path to the saved model.
 
         Note that tflearn models are usually consist of three files in the format 
-        file_name.``data``, file_name.``info``, file_name.``meta``. For this parameter,
+        file_name.``data``, file_name.`.index``, file_name.``meta``. For this parameter,
         simply specify file_path/file_name.
 
     save_model: bool
@@ -463,7 +463,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
     model_load_path: str
         Path to the saved model, which will serve as the starting point for transfer learning. Note that 
         tflearn models are usually consist of three files in the format file_name.``data``,
-        file_name.``info``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+        file_name.`.index``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
 
         This parameter can also take the following special values
         
@@ -476,7 +476,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         The full path to the location where the model generated during the training process are to be 
         saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
         will result in model files of the form ``checkpoint.meta", ``checkpoint.data`` and
-        ``checkpoint.info`` being saved. 
+        ``checkpoint.index`` being saved. 
 
         Set this to `/dev/null` on a unix system if you don't want to save the output. 
 
