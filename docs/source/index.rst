@@ -10,6 +10,13 @@ About GaMorNet
 ==============
 The Galaxy Morphology Network (GaMorNet) is a convolutional neural network that can classify galaxies as being disk-dominated, bulge-dominated or indeterminate based on their bulge to total light ratio. GaMorNet doesn't need a large amount of training data and can work across different data-sets. For more details about GaMorNet's design, how it was trained etc., please refer to :ref:`pub_and_other_data`.  
 
+.. figure:: ./images/gamornet_schematic_coloured.png
+   :height: 200 px
+   :alt: Schematic Diagram of GaMorNet
+   :align: center
+
+   Schematic diagram of Galaxy Morphology Network.
+
 .. _first_contact:
 
 First contact with GaMorNet
