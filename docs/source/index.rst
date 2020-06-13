@@ -21,7 +21,7 @@ The Galaxy Morphology Network (GaMorNet) is a convolutional neural network that 
 
 First contact with GaMorNet
 ---------------------------
-GaMorNet's user-faced functions has been written in a way so that it's easy to start using it even if you have not dealt with convolutional neural networks before. For. eg. to perform predictions on an array of SDSS images using our trained models, the following line of code is all you need. 
+GaMorNet's user-faced functions have been written in a way so that it's easy to start using them even if you have not dealt with convolutional neural networks before. For. eg. to perform predictions on an array of SDSS images using our trained models, the following line of code is all you need. 
 
 .. code-block:: python
 
@@ -32,7 +32,7 @@ GaMorNet's user-faced functions has been written in a way so that it's easy to s
 
 In order to start using GaMorNet, please first look at the :ref:`getting_started` section for instructions on how to install GaMorNet. Thereafter, we recommend trying out the :ref:`tutorials` in order to get a handle on how to use GaMorNet. 
 
-Finally, you should have a look at the :ref:`usage_guide` for our recommendations on how to use different element's of GaMorNet's public data release for your own work and the :ref:`api_docs` for detailed documentation of the different functions in the module. 
+Finally, you should have a look at the :ref:`usage_guide` for our recommendations on how to use different elements of GaMorNet's public data release for your own work and the :ref:`api_docs` for detailed documentation of the different functions in the module. 
 
 
 .. _pub_and_other_data:
