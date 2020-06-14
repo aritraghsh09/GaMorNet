@@ -147,7 +147,9 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -185,11 +187,10 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
     -------
     predicted probabilities: array_like
         The returned array consists of the probability for each galaxy to be disk-dominated, indeterminate and bulge-dominated
-        respectively [disk_prob,indet_prob,bulge_prob].If individual arrays are set to True, the single array is unpacked
-        and returned  as three separate arrays in the same order.
+        respectively [disk_prob, indet_prob, bulge_prob]. If `individual_arrays` is set to `True`, the single array is unpacked and returned
+        as three separate arrays in the same order.
 
         The ordering of individual elements in this array corresponds to the array of images fed in.
-
 
     """
 
@@ -273,7 +274,9 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -423,7 +426,9 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)

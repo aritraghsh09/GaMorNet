@@ -12,12 +12,12 @@ FAQs
 
     Try using Google Colab like we have done in the :ref:`tutorials`. 
 
-    Note that the underlying package that we use to interact with a GPU is TensorFlow. Look at `these <https://www.tensorflow.org/install/gpu>`_ detailed instructions for enabling GPU support for Tensorflow. Alternatively if you are running this on a supercomputer, ask the administrators for detailed instructions on installing TenorFlow. 
+    Note that the underlying package that we use to interact with a GPU is TensorFlow. Look at `these <https://www.tensorflow.org/install/gpu>`_ detailed instructions for enabling GPU support for TensorFlow. Alternatively, if you are running this on a supercomputer, ask the administrators for detailed instructions on installing TensorFlow. 
 
 
-#. I am getting an import error involving ``GLIBC`` or ``libcudas.so`` , ``libm.so``.
+#. I am getting an import error involving ``GLIBC`` or ``libcudas.so``  or ``libm.so``.
 
-    You are getting these errors because TensorFlow cannot find the appropriate CUDA libraries. Please follow the instructions `here <https://www.tensorflow.org/install/gpu>`_. Alternatively if you are running this on a supercomputer, ask the administrators for detailed instructions on installing TenorFlow. 
+    In all probability, you are getting these errors because TensorFlow cannot find the appropriate CUDA libraries. Please follow the instructions `here <https://www.tensorflow.org/install/gpu>`_. Alternatively if you are running this on a supercomputer, ask the administrators for detailed instructions on installing TensorFlow. 
 
 
 #. Should I use the Keras or TFLearn module if I myself don't have a preference?

@@ -4,8 +4,8 @@ API Documentation
 =================
 
 Both the Keras and TFLearn modules have similarly named functions with very similar parameters. Use the ``_predict_`` functions to perform
-predictions using our trained models or a model you trained from scratch. Use the ``_train`` functions to train a model from scratch. Use the 
-``_tl_`` function to perform transfer learning on a previously trained model -- this can be our pre-trained models or a model that you trained.
+predictions using our trained models or a model you trained from scratch. Use the ``_train_`` functions to train a model from scratch. Use the 
+``_tl_`` functions to perform transfer learning on a previously trained model -- this can be our pre-trained models or a model that you trained.
 
 Please have a look at the :ref:`tutorials` for examples of how to use these functions effectively.
 

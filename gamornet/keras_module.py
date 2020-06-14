@@ -222,7 +222,7 @@ def gamornet_build_model_keras(input_shape):
 def gamornet_predict_keras(img_array, model_load_path,
                            input_shape, batch_size=64, individual_arrays=False):
     """
-    Uses a `keras` model to perform predictions on supplied images.
+    Uses a Keras model to perform predictions on supplied images.
 
     Parameters
     ----------
@@ -232,16 +232,19 @@ def gamornet_predict_keras(img_array, model_load_path,
         underlying deep learning frameworks work better with numpy arrays compared to other array-like elements.
 
     model_load_path: str
-        Path to the saved model.
-        This parameter can take the following special values
+        Full path to the saved Keras model.
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        Additionally, this parameter can take the following special values
+
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
         * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -258,7 +261,7 @@ def gamornet_predict_keras(img_array, model_load_path,
     -------
     predicted probabilities: array_like
         The returned array consists of the probability for each galaxy to be disk-dominated, indeterminate and bulge-dominated
-        respectively [disk_prob,indet_prob,bulge_prob].If individual arrays are set to True, the single array is unpacked and returned
+        respectively [disk_prob, indet_prob, bulge_prob]. If `individual_arrays` is set to `True`, the single array is unpacked and returned
         as three separate arrays in the same order.
 
         The ordering of individual elements in this array corresponds to the array of images fed in.
@@ -319,7 +322,9 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -463,7 +468,9 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -499,12 +506,13 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         * ``train_bools_CANDELS``- Sets the bools according to what was done for the CANDELS data in Ghosh et. al. (2020)
 
     model_load_path: str
-        Path to the saved model, which will serve as the starting point for transfer learning.
-        This parameter can take the following special values
+        Full path to the saved Keras model, which will serve as the starting point for transfer learning.
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        Additionally, this parameter can take the following special values
+
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
         * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     files_save_path: str
