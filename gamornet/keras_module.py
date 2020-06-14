@@ -222,7 +222,7 @@ def gamornet_build_model_keras(input_shape):
 def gamornet_predict_keras(img_array, model_load_path,
                            input_shape, batch_size=64, individual_arrays=False):
     """
-    Uses a `keras` model to perform predictions on supplied images.
+    Uses a Keras model to perform predictions on supplied images.
 
     Parameters
     ----------
@@ -232,16 +232,19 @@ def gamornet_predict_keras(img_array, model_load_path,
         underlying deep learning frameworks work better with numpy arrays compared to other array-like elements.
 
     model_load_path: str
-        Path to the saved model.
-        This parameter can take the following special values
+        Full path to the saved Keras model.
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
-        * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
-        * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
+        Additionally, this parameter can take the following special values
+
+        * ``SDSS_sim`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
+        * ``SDSS_tl`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_tl`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -258,7 +261,7 @@ def gamornet_predict_keras(img_array, model_load_path,
     -------
     predicted probabilities: array_like
         The returned array consists of the probability for each galaxy to be disk-dominated, indeterminate and bulge-dominated
-        respectively [disk_prob,indet_prob,bulge_prob].If individual arrays are set to True, the single array is unpacked and returned
+        respectively [disk_prob, indet_prob, bulge_prob]. If ``individual_arrays`` is set to ``True``, the single array is unpacked and returned
         as three separate arrays in the same order.
 
         The ordering of individual elements in this array corresponds to the array of images fed in.
@@ -287,13 +290,13 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
                          epochs=100, checkpoint_freq=0, batch_size=64, lr=0.0001, momentum=0.9, decay=0.0, nesterov=False,
                          loss='categorical_crossentropy', load_model=False, model_load_path="./", save_model=True, verbose=1):
     """
-    Trains and return a GaMorNet model using Keras.
+    Trains and returns a GaMorNet model using Keras.
 
     Parameters
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the training process. We insist on numpy arrays
+        The array of images which are to be used for the training process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -306,7 +309,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -319,19 +322,21 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
 
     files_save_path: str
         The full path to the location where files generated during the training process are to be saved. This
-        includes the metrics csv file as well as the trained model.
+        includes the ``metrics.csv`` file as well as the trained model.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the output.
+        Set this to ``/dev/null`` on a unix system if you don't want to save the output.
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     checkpoint_freq: int
         The frequency (in terms of epochs) at which you want to save models. For eg. setting this
@@ -350,7 +355,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         ``keras.optimizers.schedules.LearningRateSchedule``
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 
@@ -361,7 +366,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str or function
-        The loss function to be used. If using the string option, you need to supply the name of
+        The loss function to be used. If using the string option, you need to specify the name of
         the loss function. This can be set to be any loss available in ``keras.losses``
 
     load_model: bool
@@ -372,7 +377,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         saved model.
 
     model_load_path: str
-        Required `iff load_model ==True`. The path to the saved model.
+        Required iff ``load_model == True``. The path to the saved model.
 
     save_model: bool
         Whether you want to save the model in its final trained state.
@@ -437,7 +442,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the TL process. We insist on numpy arrays
+        The array of images which are to be used for the TL process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -450,7 +455,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -463,7 +468,9 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -473,8 +480,8 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         loaded during the transfer learning process from the supplied starting model. The rest of the layers will be
         initialized from scratch.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -488,8 +495,8 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         trainable during the transfer learning process. The rest are frozen at the values loaded from the previous
         model.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -499,22 +506,23 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         * ``train_bools_CANDELS``- Sets the bools according to what was done for the CANDELS data in Ghosh et. al. (2020)
 
     model_load_path: str
-        Path to the saved model, which will serve as the starting point for transfer learning.
-        This parameter can take the following special values
+        Full path to the saved Keras model, which will serve as the starting point for transfer learning.
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
-        * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
-        * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
+        Additionally, this parameter can take the following special values
+
+        * ``SDSS_sim`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
+        * ``SDSS_tl`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_tl`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     files_save_path: str
         The full path to the location where files generated during the training process are to be saved. This
-        includes the metrics csv file as well as the trained model.
+        includes the ``metrics.csv`` file as well as the trained model.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the output.
+        Set this to ``/dev/null`` on a unix system if you don't want to save the output.
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     checkpoint_freq: int
         The frequency (in terms of epochs) at which you want to save models. For eg. setting this
@@ -533,7 +541,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         ``keras.optimizers.schedules.LearningRateSchedule``
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 
@@ -544,8 +552,8 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str
-        The loss function to be used. If using the string option, you need to supply the name of
-        the loss functionThis can be set to be any loss available in ``keras.losses``
+        The loss function to be used. If using the string option, you need to specify the name of
+        the loss function. This can be set to be any loss available in ``keras.losses``
 
     save_model: bool
         Whether you want to save the model in its final trained state.

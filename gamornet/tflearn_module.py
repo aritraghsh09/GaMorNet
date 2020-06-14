@@ -127,7 +127,7 @@ def gamornet_build_model_tflearn(input_shape, trainable_bools=[
 def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size=64, individual_arrays=False, trainable_bools=[True] * 8,
                              clear_session=False):
     """
-    Uses a `tflearn` model to perform predictions on supplied images.
+    Uses a TFLearn model to perform predictions on supplied images.
 
     Parameters
     ----------
@@ -136,18 +136,20 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         underlying deep learning frameworks work better with numpy arrays compared to other array-like elements.
 
     model_load_path: str
-        Path to the saved model. Note that tflearn models are usually consist of three files in the format file_name.``data``,
-        file_name.``index``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+        Path to the saved model. Note that tflearn models usually consist of three files in the format ``file_name.data``,
+        ``file_name.index``, ``file_name.meta``. For this parameter, simply specify file_path/file_name.
 
-        This parameter can take the following special values
+        This parameter can also take the following special values
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
         * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -163,8 +165,8 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         This variable is used to identify which of the 5 convolutional and 3 fully-connected layers of GaMorNet were
         set to trainable during the training phase of the model (which is now being used for prediction)
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -175,21 +177,20 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
 
     clear_session: bool
         If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a
-        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuse the same layer names
         leading to conflicts)
 
-        Note that, if set to True, you will lose access to any other graphs you may have run before.
+        Note that if set to True, you will lose access to any other graphs you may have run before.
 
 
     Returns
     -------
     predicted probabilities: array_like
         The returned array consists of the probability for each galaxy to be disk-dominated, indeterminate and bulge-dominated
-        respectively [disk_prob,indet_prob,bulge_prob].If individual arrays are set to True, the single array is unpacked
-        and returned  as three separate arrays in the same order.
+        respectively [disk_prob, indet_prob, bulge_prob]. If ``individual_arrays`` is set to ``True``, the single array is unpacked and returned
+        as three separate arrays in the same order.
 
         The ordering of individual elements in this array corresponds to the array of images fed in.
-
 
     """
 
@@ -247,7 +248,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the training process. We insist on numpy arrays
+        The array of images which are to be used for the training process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -260,7 +261,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -273,21 +274,23 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
 
     files_save_path: str
-        The full path to the location where the model generated during the training process are to be
+        The full path to the location where the models generated during the training process are to be
         saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
         will result in model files of the form ``checkpoint.meta``, ``checkpoint.data`` and
         ``checkpoint.index`` being saved.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the file(s)
+        Set this to ``/dev/null`` on a unix system if you don't want to save the file(s)
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     max_checkpoints: int
         TFLearn saves the model at the end of each epoch. This parameter controls how many of the
@@ -304,7 +307,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         starting point.
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 
@@ -315,21 +318,21 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str or function
-        The loss function to be used. If using the string option, you need to supply the name of
+        The loss function to be used. If using the string option, you need to specify the name of
         the loss function. This can be set to be any loss available in ``tflearn``
 
     load_model: bool
         Whether you want to start the training from a previously saved model.
 
-        We strongly recommend using the ``gamornet_tl_keras`` function for more
+        We strongly recommend using the ``gamornet_tl_tflearn`` function for more
         control over the process when starting the training from a previously
         saved model.
 
     model_load_path: str
-        Required `iff load_model ==True`. The path to the saved model.
+        Required iff ``load_model == True``. The path to the saved model.
 
-        Note that tflearn models are usually consist of three files in the format
-        file_name.``data``, file_name.``index``, file_name.``meta``. For this parameter,
+        Note that tflearn models usually consist of three files in the format
+        ``file_name.data``, ``file_name.index``, ``file_name.meta``. For this parameter,
         simply specify file_path/file_name.
 
     save_model: bool
@@ -342,10 +345,10 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
 
     clear_session: bool
         If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a
-        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuse the same layer names
         leading to conflicts)
 
-        Note that, if set to True, you will lose access to any other graphs you may have run before.
+        Note that if set to True, you will lose access to any other graphs you may have run before.
 
 
     Returns
@@ -397,7 +400,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the TL process. We insist on numpy arrays
+        The array of images which are to be used for the TL process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -410,7 +413,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -423,7 +426,9 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         * Bulge-dominated - ``[0,0,1]``
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
-        The shape of the images being used. The parameter can also take the following special values:-
+        The shape of the images being used in the form of a tuple. 
+
+        This parameter can also take the following special values:-
 
         * ``SDSS`` - Sets the input shape to be (167,167,1) as was used for the SDSS g-band images in Ghosh et. al. (2020)
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
@@ -433,8 +438,8 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         loaded during the transfer learning process from the supplied starting model. The rest of the layers will be
         initialized from scratch.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -448,8 +453,8 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         trainable during the transfer learning process. The rest are frozen at the values loaded from the previous
         model.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -460,26 +465,26 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
 
     model_load_path: str
         Path to the saved model, which will serve as the starting point for transfer learning. Note that
-        tflearn models are usually consist of three files in the format file_name.``data``,
-        file_name.``index``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+        tflearn models usually consist of three files in the format ``file_name.data``,
+        ``file_name.index``, ``file_name.meta``. For this parameter, simply specify file_path/file_name.
 
         This parameter can also take the following special values
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
         * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     files_save_path: str
-        The full path to the location where the model generated during the training process are to be
+        The full path to the location where the models generated during the training process are to be
         saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
         will result in model files of the form ``checkpoint.meta``, ``checkpoint.data`` and
         ``checkpoint.index`` being saved.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the output.
+        Set this to ``/dev/null`` on a unix system if you don't want to save the output.
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     max_checkpoints: int
         TFLearn saves the model at the end of each epoch. This parameter controls how many of the
@@ -496,7 +501,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         starting point.
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 
@@ -507,7 +512,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str or function
-        The loss function to be used. If using the string option, you need to supply the name of
+        The loss function to be used. If using the string option, you need to specify the name of
         the loss function. This can be set to be any loss available in ``tflearn``
 
     save_model: bool
@@ -520,10 +525,10 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
 
     clear_session: bool
         If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a
-        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuse the same layer names
         leading to conflicts)
 
-        Note that, if set to True, you will lose access to any other graphs you may have run before.
+        Note that if set to True, you will lose access to any other graphs you may have run before.
 
 
     Returns
