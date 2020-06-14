@@ -3,8 +3,7 @@
 Public Data Release Handbook
 =============================
 
-If you are looking for information about the various ways you can use GaMorNet (running on a CPU v/s GPU v/s the cloud) or installation instructions, please have a look at 
-:ref:`getting_started`. This section summarizes different aspects of the public data release and provides some advice on the applicability of GaMorNet for various tasks. 
+If you are looking for information about the various ways you can use GaMorNet (running on a CPU v/s GPU v/s the cloud) or installation instructions, please have a look at :ref:`getting_started`. This section summarizes different aspects of the public data release and provides some advice on the applicability of GaMorNet for various tasks. 
 
 
 .. _usage_advice:
@@ -13,17 +12,17 @@ Usage Advice
 -------------
 How you will use the public data release of GaMorNet strongly depends on the task at hand. 
 
-* If you are looking for predictions of the SDSS g-band and CANDELS H-band dataset of Ghosh et. al. (2020), look at :ref:`pred_tables` on how to access the prediction tables.
+* If you are looking for predictions of the SDSS g-band and CANDELS H-band dataset of Ghosh et. al. (2020), please have a look at the :ref:`pred_tables` section. 
 
-* If you have SDSS g-band and CANDELS H-band data that we haven't classified, use the final trained models (on simulations + real data) that we have released. You can manually download these models from :ref:`trained_models` or use the :func:`gamornet_predict_keras`/:func:`gamornet_predict_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs`. 
+* If you have SDSS g-band (:math:`z\ sim 0`) and/or CANDELS H-band (:math:`z\ sim 1`) data that we haven't classified, please use the final trained models (on simulations + real data) that we have released. You can manually download these models from :ref:`trained_models` or use the :func:`gamornet_predict_keras` / :func:`gamornet_predict_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs`. 
 
-* If you have SDSS and CANDELS data other than g-band and H-band that you want to classify, 
+* If you have SDSS and CANDELS data other than g-band at :math:`z\ sim 0` and H-band at :math:`z\ sim 1` that you want to classify:- 
 
-    * if the data are in nearby bands (i.e. near g-band for SDSS and H-band for CANDELS), we recommend using the :func:`gamornet_tl_keras`/:func:`gamornet_tl_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs` to perform transfer learning. We recommend starting the transfer learning process from both our simulation-only and final trained models and choosing one that maximizes the accuracy on your validation set. In case, you want to download the models manually, see :ref:`trained_models`.
+    * If the data are in nearby bands *at the same redshifts* (i.e. near g-band for SDSS and H-band for CANDELS), we recommend using the :func:`gamornet_tl_keras` / :func:`gamornet_tl_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs` to perform transfer learning. We recommend starting the transfer learning process from both our simulation-only and final trained models and choosing the one that maximizes the accuracy on your validation set. In case you want to download the models manually, see :ref:`trained_models`.
 
-    * if you believe that your data is significantly different in resolution or any other photometric aspect, you could also train a network from scratch using :func:`gamornet_train_keras`/:func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
+    * If you believe that your data is significantly different in redshift, resolution or any other photometric aspect, you could also train a network from scratch using :func:`gamornet_train_keras` / :func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
 
-* If you have some other data that you want to classify, train a network from scratch using :func:`gamornet_train_keras`/:func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
+* If you have some other data that you want to classify, train a network from scratch using :func:`gamornet_train_keras` / :func:`gamornet_train_tflearn` as shown in :ref:`tutorials` and :ref:`api_docs`.
 
 
 
@@ -31,7 +30,7 @@ If you are not sure about something, please look at this documentation carefully
 
 .. important::
 
-    GaMorNet is best utilized when you have tens or tens of thousands of images to classify. If you only have a handful of images you want to look at in greater detail, your purposes in all probability will be served better by a 
+    GaMorNet is best utilized when you a large number of images to analyze. If you only have a handful of images (:math:`sim 5`) that you want to look at in greater detail, your purposes in all probability will be served better by a 
     standalone light profile fitting code. 
 
 
@@ -51,8 +50,8 @@ to reproduce the same work. Thus, everything in the Public Data Release is avail
 
 .. important::
    Note that due to the inherent stochasticity involved in training a neural network, the results given by the Keras and TFLearn models are very close, but
-   not completely exact replicas of one another. If you want to re-create the results in |Ghosh et. al. (2020)|_, you should use the TFLearn flavored data products. 
-   In all other cases, we recommend using the Keras flavored data products as it will be better supported in the future. Look below for how the two flavors are different.
+   not exact replicas of one another. If you want to re-create the results in |Ghosh et. al. (2020)|_, you should use the TFLearn flavored data products. 
+   In all other cases, we recommend using the Keras flavored data products as it will be better supported in the future. Look below to understand how the two flavors are different.
 
 .. warning::
    Note that for the Keras models, the accuracies achieved are slightly different than what was achieved with TFLearn in |Ghosh et. al. (2020)|_. Additionally,
@@ -69,9 +68,9 @@ content to Tables 5 and 7 in |Ghosh et. al. (2020)|_, which were obtained using 
 | **Keras on SDSS**      | Predicted  |Predicted |
 |                        | Disks      |Bulges    | 
 +========================+============+==========+
-| Actual Disks           | 99.72%     | 3.37%    | 
+| **Actual Disks**       | 99.72%     | 3.37%    | 
 +------------------------+------------+----------+
-| Actual Bulges          | 0.15%      | 95.25%   |
+| **Actual Bulges**      | 0.15%      | 95.25%   |
 +------------------------+------------+----------+
 
 
@@ -79,9 +78,9 @@ content to Tables 5 and 7 in |Ghosh et. al. (2020)|_, which were obtained using 
 | **Keras on CANDELS**   | Predicted  |Predicted |
 |                        | Disks      |Bulges    | 
 +========================+============+==========+
-| Actual Disks           | 94.45%     | 21.74%   | 
+| **Actual Disks**       | 94.45%     | 21.74%   | 
 +------------------------+------------+----------+
-| Actual Bulges          | 5.37%      | 77.88%   |
+| **Actual Bulges**      | 5.37%      | 77.88%   |
 +------------------------+------------+----------+
 
 
@@ -89,31 +88,30 @@ content to Tables 5 and 7 in |Ghosh et. al. (2020)|_, which were obtained using 
 | **TFLearn on SDSS**    | Predicted  |Predicted |
 |                        | Disks      |Bulges    | 
 +========================+============+==========+
-| Actual Disks           | 99.72%     | 4.13%    | 
+| **Actual Disks**       | 99.72%     | 4.13%    | 
 +------------------------+------------+----------+
-| Actual Bulges          | 0.19%      | 94.83%   |
+| **Actual Bulges**      | 0.19%      | 94.83%   |
 +------------------------+------------+----------+
 
 +------------------------+------------+----------+
 | **TFLearn on CANDELS** | Predicted  |Predicted |
 |                        | Disks      |Bulges    | 
 +========================+============+==========+
-| Actual Disks           | 91.83%     | 20.86%   | 
+| **Actual Disks**       | 91.83%     | 20.86%   | 
 +------------------------+------------+----------+
-| Actual Bulges          | 7.90%      | 78.62%   |
+| **Actual Bulges**      | 7.90%      | 78.62%   |
 +------------------------+------------+----------+
 
 
 .. important::
-    We additionally checked, how many of the galaxies switched classifications between disk-dominated and bulge-dominated, when predictions were performed separately using 
-    the Keras and TFLearn models. For both the SDSS and CANDELS samples, this number is :math:`\leq 0.04\%`
+    For an additional consistency-check, we counted how many of the galaxies switched classifications between disk-dominated and bulge-dominated, when predictions were performed separately using the Keras and TFLearn models. For both the SDSS and CANDELS samples, this number is :math:`\leq 0.04\%`
 
 
 **Indeterminate Fraction**
 
 The table below shows the number of galaxies in the |Ghosh et. al. (2020)|_ sample that are classified by the various models of GaMorNet to be indeterminate. This includes galaxies
 which have intermediate bulge-to-total light ratios (:math:`0.45 \leq L_B/L_T \leq 0.55`) and those for which the network is not confident enough to make a prediction. For more
-information please refer to Section 4 of the paper. 
+information, please refer to Section 4 of the paper. 
 
 
 +------------------------+------------+----------+------------+----------+
@@ -127,7 +125,7 @@ information please refer to Section 4 of the paper.
 
 **Thresholds Used**
 
-The probability thresholds that were used to generate the prediction tables as well as the tables above are shown below. 
+To turn GaMorNet's output probability values into class predictions, we use probability thresholds. The probability thresholds that were used to generate the prediction tables as well as the tables above are shown below. 
 
 
 *Keras on SDSS*
@@ -158,7 +156,7 @@ The probability thresholds that were used to generate the prediction tables as w
 
 .. important::
 
-   The choice of the confidence threshold is arbitrary and should be chosen appropriately for the particular task at hand. Toward this end, Figures 8 and 9 
+   The choice of the confidence threshold is arbitrary and should be chosen appropriately for the particular task at hand. Towards this end, Figures 8 and 9 
    of |Ghosh et. al. (2020)|_ can be used to asses the trade-off between accuracy and completeness for both samples.
 
    For more information about the impact of probability thresholds on the results, please refer to Section 4.1 of the paper
@@ -196,8 +194,8 @@ Thereafter, navigate to the appropriate subdirectory.
 
 Prediction Tables
 ^^^^^^^^^^^^^^^^^^
-The predicted probabilities (of being disk-dominated, bulge- dominated, or indeterminate) and the final classifications for all of the galaxies 
-in the SDSS and CANDELS test sets in Ghosh et. al. (2020), as determined by GaMorNet, are made available as .txt files. 
+The predicted probabilities (of being disk-dominated, bulge-dominated, or indeterminate) and the final classifications for all of the galaxies 
+in the SDSS and CANDELS test sets of |Ghosh et. al. (2020)|_ are made available as `.txt` files. 
 These tables are the full versions of Tables 4 and 6 in the paper. The appropriate sub-directories of the :ref:`ftp_server` are mentioned below:-
 
 *TFLearn*
@@ -219,7 +217,7 @@ Trained Models
 ^^^^^^^^^^^^^^^
 Note that the functions :func:`gamornet_predict_keras`, :func:`gamornet_predict_tflearn` automatically download and use the trained models when the correct
 parameters are passed to them. However, in case you want to just download the model files for yourself, navigate to the appropriate sub-directories on the
-:ref:`ftp_server` as mentioned below. For more information about these models, please refer to Ghosh et. al. (2020) and see :ref:`usage_advice`. 
+:ref:`ftp_server` as mentioned below. For more information about these models, please refer to |Ghosh et. al. (2020)|_ and see :ref:`usage_advice`. 
 
 *TFLearn*
 
