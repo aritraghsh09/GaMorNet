@@ -12,11 +12,11 @@ Usage Advice
 -------------
 How you will use the public data release of GaMorNet strongly depends on the task at hand. 
 
-* If you are looking for predictions of the SDSS g-band and CANDELS H-band dataset of Ghosh et. al. (2020), please have a look at the :ref:`pred_tables` section. 
+* If you are looking for predictions of the SDSS g-band and CANDELS H-band dataset of |Ghosh et. al. (2020)|_, please have a look at the :ref:`pred_tables` section. 
 
-* If you have SDSS g-band (:math:`z\ sim 0`) and/or CANDELS H-band (:math:`z\ sim 1`) data that we haven't classified, please use the final trained models (on simulations + real data) that we have released. You can manually download these models from :ref:`trained_models` or use the :func:`gamornet_predict_keras` / :func:`gamornet_predict_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs`. 
+* If you have SDSS g-band (:math:`z \sim 0`) and/or CANDELS H-band (:math:`z \sim 1`) data that we haven't classified, please use the final trained models (on simulations + real data) that we have released. You can manually download these models from :ref:`trained_models` or use the :func:`gamornet_predict_keras` / :func:`gamornet_predict_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs`. 
 
-* If you have SDSS and CANDELS data other than g-band at :math:`z\ sim 0` and H-band at :math:`z\ sim 1` that you want to classify:- 
+* If you have SDSS and CANDELS data other than g-band at :math:`z \sim 0` and H-band at :math:`z \sim 1` that you want to classify:- 
 
     * If the data are in nearby bands *at the same redshifts* (i.e. near g-band for SDSS and H-band for CANDELS), we recommend using the :func:`gamornet_tl_keras` / :func:`gamornet_tl_tflearn` functions as shown in :ref:`tutorials` and :ref:`api_docs` to perform transfer learning. We recommend starting the transfer learning process from both our simulation-only and final trained models and choosing the one that maximizes the accuracy on your validation set. In case you want to download the models manually, see :ref:`trained_models`.
 
@@ -30,7 +30,7 @@ If you are not sure about something, please look at this documentation carefully
 
 .. important::
 
-    GaMorNet is best utilized when you a large number of images to analyze. If you only have a handful of images (:math:`sim 5`) that you want to look at in greater detail, your purposes in all probability will be served better by a 
+    GaMorNet is best utilized when you a large number of images to analyze. If you only have a handful of images (:math:` \sim 5`) that you want to look at in greater detail, your purposes in all probability will be served better by a 
     standalone light profile fitting code. 
 
 
