@@ -156,7 +156,7 @@ To turn GaMorNet's output probability values into class predictions, we use prob
 
 .. important::
 
-   The choice of the confidence threshold is arbitrary and should be chosen appropriately for the particular task at hand. Towards this end, Figures 8 and 9 
+   The choice of the confidence/probability threshold is arbitrary and should be chosen appropriately for the particular task at hand. Towards this end, Figures 8 and 9 
    of |Ghosh et. al. (2020)|_ can be used to asses the trade-off between accuracy and completeness for both samples.
 
    For more information about the impact of probability thresholds on the results, please refer to Section 4.1 of the paper
@@ -195,7 +195,7 @@ Thereafter, navigate to the appropriate subdirectory.
 Prediction Tables
 ^^^^^^^^^^^^^^^^^^
 The predicted probabilities (of being disk-dominated, bulge-dominated, or indeterminate) and the final classifications for all of the galaxies 
-in the SDSS and CANDELS test sets of |Ghosh et. al. (2020)|_ are made available as `.txt` files. 
+in the SDSS and CANDELS test sets of |Ghosh et. al. (2020)|_ are made available as `.txt`  files. 
 These tables are the full versions of Tables 4 and 6 in the paper. The appropriate sub-directories of the :ref:`ftp_server` are mentioned below:-
 
 *TFLearn*
