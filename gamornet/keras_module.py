@@ -355,7 +355,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         ``keras.optimizers.schedules.LearningRateSchedule``
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 
@@ -541,7 +541,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         ``keras.optimizers.schedules.LearningRateSchedule``
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 

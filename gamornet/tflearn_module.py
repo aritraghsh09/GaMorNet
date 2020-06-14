@@ -282,7 +282,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         * ``CANDELS`` -  Sets the input shape to be (83,83,1) as was used for the CANDELS H-band images in Ghosh et. al. (2020)
 
     files_save_path: str
-        The full path to the location where the model generated during the training process are to be
+        The full path to the location where the models generated during the training process are to be
         saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
         will result in model files of the form ``checkpoint.meta``, ``checkpoint.data`` and
         ``checkpoint.index`` being saved.
@@ -307,7 +307,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         starting point.
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 
@@ -476,7 +476,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     files_save_path: str
-        The full path to the location where the model generated during the training process are to be
+        The full path to the location where the models generated during the training process are to be
         saved. The path should end with the name of the file. For eg. ``/path/checkpoint``. This
         will result in model files of the form ``checkpoint.meta``, ``checkpoint.data`` and
         ``checkpoint.index`` being saved.
@@ -501,7 +501,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         starting point.
 
     momentum: float
-        The value momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
+        The value of the momentum to be used in the gradient descent optimizer that is used to train GaMorNet.
         This must always be :math:`\geq 0`. This accelerates the gradient descent process. This is a
         hyperparameter. The default value is a good starting point.
 
