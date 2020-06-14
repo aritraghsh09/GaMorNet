@@ -139,11 +139,11 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         Path to the saved model. Note that tflearn models usually consist of three files in the format ``file_name.data``,
         ``file_name.index``, ``file_name.meta``. For this parameter, simply specify file_path/file_name.
 
-        This parameter can take the following special values
+        This parameter can also take the following special values
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
         * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
@@ -470,9 +470,9 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
 
         This parameter can also take the following special values
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations a z~0 from Ghosh et. al. (2020)
+        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
         * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations a z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
         * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     files_save_path: str
