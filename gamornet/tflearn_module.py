@@ -187,7 +187,7 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
     -------
     predicted probabilities: array_like
         The returned array consists of the probability for each galaxy to be disk-dominated, indeterminate and bulge-dominated
-        respectively [disk_prob, indet_prob, bulge_prob]. If `individual_arrays` is set to `True`, the single array is unpacked and returned
+        respectively [disk_prob, indet_prob, bulge_prob]. If ``individual_arrays`` is set to ``True``, the single array is unpacked and returned
         as three separate arrays in the same order.
 
         The ordering of individual elements in this array corresponds to the array of images fed in.
@@ -248,7 +248,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the training process. We insist on numpy arrays
+        The array of images which are to be used for the training process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -261,7 +261,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -290,7 +290,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         Set this to `/dev/null` on a unix system if you don't want to save the file(s)
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     max_checkpoints: int
         TFLearn saves the model at the end of each epoch. This parameter controls how many of the
@@ -318,7 +318,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str or function
-        The loss function to be used. If using the string option, you need to supply the name of
+        The loss function to be used. If using the string option, you need to specify the name of
         the loss function. This can be set to be any loss available in ``tflearn``
 
     load_model: bool
@@ -329,7 +329,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         saved model.
 
     model_load_path: str
-        Required `iff load_model ==True`. The path to the saved model.
+        Required iff ``load_model == True``. The path to the saved model.
 
         Note that tflearn models are usually consist of three files in the format
         file_name.``data``, file_name.``index``, file_name.``meta``. For this parameter,
@@ -400,7 +400,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the TL process. We insist on numpy arrays
+        The array of images which are to be used for the TL process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -413,7 +413,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -484,7 +484,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         Set this to `/dev/null` on a unix system if you don't want to save the output.
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     max_checkpoints: int
         TFLearn saves the model at the end of each epoch. This parameter controls how many of the
@@ -512,7 +512,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str or function
-        The loss function to be used. If using the string option, you need to supply the name of
+        The loss function to be used. If using the string option, you need to specify the name of
         the loss function. This can be set to be any loss available in ``tflearn``
 
     save_model: bool

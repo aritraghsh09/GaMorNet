@@ -261,7 +261,7 @@ def gamornet_predict_keras(img_array, model_load_path,
     -------
     predicted probabilities: array_like
         The returned array consists of the probability for each galaxy to be disk-dominated, indeterminate and bulge-dominated
-        respectively [disk_prob, indet_prob, bulge_prob]. If `individual_arrays` is set to `True`, the single array is unpacked and returned
+        respectively [disk_prob, indet_prob, bulge_prob]. If ``individual_arrays`` is set to ``True``, the single array is unpacked and returned
         as three separate arrays in the same order.
 
         The ordering of individual elements in this array corresponds to the array of images fed in.
@@ -290,13 +290,13 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
                          epochs=100, checkpoint_freq=0, batch_size=64, lr=0.0001, momentum=0.9, decay=0.0, nesterov=False,
                          loss='categorical_crossentropy', load_model=False, model_load_path="./", save_model=True, verbose=1):
     """
-    Trains and return a GaMorNet model using Keras.
+    Trains and returns a GaMorNet model using Keras.
 
     Parameters
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the training process. We insist on numpy arrays
+        The array of images which are to be used for the training process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -309,7 +309,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -331,12 +331,12 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
 
     files_save_path: str
         The full path to the location where files generated during the training process are to be saved. This
-        includes the metrics csv file as well as the trained model.
+        includes the ``metrics.csv`` file as well as the trained model.
 
         Set this to `/dev/null` on a unix system if you don't want to save the output.
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     checkpoint_freq: int
         The frequency (in terms of epochs) at which you want to save models. For eg. setting this
@@ -366,7 +366,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str or function
-        The loss function to be used. If using the string option, you need to supply the name of
+        The loss function to be used. If using the string option, you need to specify the name of
         the loss function. This can be set to be any loss available in ``keras.losses``
 
     load_model: bool
@@ -377,7 +377,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         saved model.
 
     model_load_path: str
-        Required `iff load_model ==True`. The path to the saved model.
+        Required iff ``load_model == True``. The path to the saved model.
 
     save_model: bool
         Whether you want to save the model in its final trained state.
@@ -442,7 +442,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
     -----------
 
     training_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the TL process. We insist on numpy arrays
+        The array of images which are to be used for the TL process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -455,7 +455,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         * Bulge-dominated - ``[0,0,1]``
 
     validation_imgs: Numpy ndarray [nsamples,x,y,ndim]
-        The array of images on which are to be used for the validation process. We insist on numpy arrays
+        The array of images which are to be used for the validation process. We insist on numpy arrays
         as many of the underlying deep learning frameworks work better with numpy arrays compared to
         other array-like elements.
 
@@ -517,12 +517,12 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
 
     files_save_path: str
         The full path to the location where files generated during the training process are to be saved. This
-        includes the metrics csv file as well as the trained model.
+        includes the ``metrics.csv`` file as well as the trained model.
 
         Set this to `/dev/null` on a unix system if you don't want to save the output.
 
     epochs: int
-        The number of epochs for which you want to training the model.
+        The number of epochs for which you want to train the model.
 
     checkpoint_freq: int
         The frequency (in terms of epochs) at which you want to save models. For eg. setting this
@@ -552,7 +552,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         Whether to apply Nesterov momentum or not.
 
     loss: allowed str
-        The loss function to be used. If using the string option, you need to supply the name of
+        The loss function to be used. If using the string option, you need to specify the name of
         the loss functionThis can be set to be any loss available in ``keras.losses``
 
     save_model: bool
