@@ -127,7 +127,7 @@ def gamornet_build_model_tflearn(input_shape, trainable_bools=[
 def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size=64, individual_arrays=False, trainable_bools=[True] * 8,
                              clear_session=False):
     """
-    Uses a `tflearn` model to perform predictions on supplied images.
+    Uses a TFLearn model to perform predictions on supplied images.
 
     Parameters
     ----------
@@ -136,8 +136,8 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         underlying deep learning frameworks work better with numpy arrays compared to other array-like elements.
 
     model_load_path: str
-        Path to the saved model. Note that tflearn models are usually consist of three files in the format file_name.``data``,
-        file_name.``index``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+        Path to the saved model. Note that tflearn models usually consist of three files in the format ``file_name.data``,
+        ``file_name.index``, ``file_name.meta``. For this parameter, simply specify file_path/file_name.
 
         This parameter can take the following special values
 
@@ -331,8 +331,8 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     model_load_path: str
         Required iff ``load_model == True``. The path to the saved model.
 
-        Note that tflearn models are usually consist of three files in the format
-        file_name.``data``, file_name.``index``, file_name.``meta``. For this parameter,
+        Note that tflearn models usually consist of three files in the format
+        ``file_name.data``, ``file_name.index``, ``file_name.meta``. For this parameter,
         simply specify file_path/file_name.
 
     save_model: bool
@@ -465,8 +465,8 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
 
     model_load_path: str
         Path to the saved model, which will serve as the starting point for transfer learning. Note that
-        tflearn models are usually consist of three files in the format file_name.``data``,
-        file_name.``index``, file_name.``meta``. For this parameter, simply specify file_path/file_name.
+        tflearn models usually consist of three files in the format ``file_name.data``,
+        ``file_name.index``, ``file_name.meta``. For this parameter, simply specify file_path/file_name.
 
         This parameter can also take the following special values
 
