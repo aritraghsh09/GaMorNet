@@ -14,6 +14,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Fixed
 
 
+## [0.4.1] -- 2020-06-14
+
+### Changed/Fixed
+- Corrected errors in the Python Docstrings of both keras and tflearn modules
+- Corrected errors/typos in API documentation 
+
 
 ## [0.4] -- 2020-06-12
 
