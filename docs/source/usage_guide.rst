@@ -30,7 +30,7 @@ If you are not sure about something, please look at this documentation carefully
 
 .. important::
 
-    GaMorNet is best utilized when you a large number of images to analyze. If you only have a handful of images (:math:` \sim 5`) that you want to look at in greater detail, your purposes in all probability will be served better by a 
+    GaMorNet is best utilized when you a large number of images to analyze. If you only have a handful of images (:math:`\sim 5`) that you want to look at in greater detail, your purposes in all probability will be served better by a 
     standalone light profile fitting code. 
 
 
