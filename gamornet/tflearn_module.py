@@ -165,8 +165,8 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         This variable is used to identify which of the 5 convolutional and 3 fully-connected layers of GaMorNet were
         set to trainable during the training phase of the model (which is now being used for prediction)
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -180,7 +180,7 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
         notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
         leading to conflicts)
 
-        Note that, if set to True, you will lose access to any other graphs you may have run before.
+        Note that if set to True, you will lose access to any other graphs you may have run before.
 
 
     Returns
@@ -348,7 +348,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
         leading to conflicts)
 
-        Note that, if set to True, you will lose access to any other graphs you may have run before.
+        Note that if set to True, you will lose access to any other graphs you may have run before.
 
 
     Returns
@@ -528,7 +528,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
         leading to conflicts)
 
-        Note that, if set to True, you will lose access to any other graphs you may have run before.
+        Note that if set to True, you will lose access to any other graphs you may have run before.
 
 
     Returns
