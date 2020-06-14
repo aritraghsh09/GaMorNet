@@ -177,7 +177,7 @@ def gamornet_predict_tflearn(img_array, model_load_path, input_shape, batch_size
 
     clear_session: bool
         If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a
-        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuse the same layer names
         leading to conflicts)
 
         Note that if set to True, you will lose access to any other graphs you may have run before.
@@ -324,7 +324,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
     load_model: bool
         Whether you want to start the training from a previously saved model.
 
-        We strongly recommend using the ``gamornet_tl_keras`` function for more
+        We strongly recommend using the ``gamornet_tl_tflearn`` function for more
         control over the process when starting the training from a previously
         saved model.
 
@@ -345,7 +345,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
 
     clear_session: bool
         If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a
-        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuse the same layer names
         leading to conflicts)
 
         Note that if set to True, you will lose access to any other graphs you may have run before.
@@ -525,7 +525,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
 
     clear_session: bool
         If set to True, this will clear the TensorFlow session currently running. This is handy while running GaMorNet in a
-        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuses the same layer names
+        notebook to avoid variable name confusions. (Sometimes, under the hood, TFLearn & Tensorflow reuse the same layer names
         leading to conflicts)
 
         Note that if set to True, you will lose access to any other graphs you may have run before.
