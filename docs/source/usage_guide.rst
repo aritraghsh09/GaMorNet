@@ -195,7 +195,7 @@ Thereafter, navigate to the appropriate subdirectory.
 Prediction Tables
 ^^^^^^^^^^^^^^^^^^
 The predicted probabilities (of being disk-dominated, bulge-dominated, or indeterminate) and the final classifications for all of the galaxies 
-in the SDSS and CANDELS test sets of |Ghosh et. al. (2020)|_ are made available as `.txt`  files. 
+in the SDSS and CANDELS test sets of |Ghosh et. al. (2020)|_ are made available as ``.txt``  files. 
 These tables are the full versions of Tables 4 and 6 in the paper. The appropriate sub-directories of the :ref:`ftp_server` are mentioned below:-
 
 *TFLearn*
