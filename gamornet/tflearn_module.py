@@ -287,7 +287,7 @@ def gamornet_train_tflearn(training_imgs, training_labels, validation_imgs, vali
         will result in model files of the form ``checkpoint.meta``, ``checkpoint.data`` and
         ``checkpoint.index`` being saved.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the file(s)
+        Set this to ``/dev/null`` on a unix system if you don't want to save the file(s)
 
     epochs: int
         The number of epochs for which you want to train the model.
@@ -438,8 +438,8 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         loaded during the transfer learning process from the supplied starting model. The rest of the layers will be
         initialized from scratch.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -453,8 +453,8 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         trainable during the transfer learning process. The rest are frozen at the values loaded from the previous
         model.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -481,7 +481,7 @@ def gamornet_tl_tflearn(training_imgs, training_labels, validation_imgs, validat
         will result in model files of the form ``checkpoint.meta``, ``checkpoint.data`` and
         ``checkpoint.index`` being saved.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the output.
+        Set this to ``/dev/null`` on a unix system if you don't want to save the output.
 
     epochs: int
         The number of epochs for which you want to train the model.

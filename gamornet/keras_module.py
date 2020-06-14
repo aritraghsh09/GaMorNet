@@ -236,10 +236,10 @@ def gamornet_predict_keras(img_array, model_load_path,
 
         Additionally, this parameter can take the following special values
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
-        * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
-        * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
+        * ``SDSS_sim`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
+        * ``SDSS_tl`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_tl`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     input_shape: tuple of ints (x, y, ndim) or allowed str
         The shape of the images being used in the form of a tuple. 
@@ -333,7 +333,7 @@ def gamornet_train_keras(training_imgs, training_labels, validation_imgs, valida
         The full path to the location where files generated during the training process are to be saved. This
         includes the ``metrics.csv`` file as well as the trained model.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the output.
+        Set this to ``/dev/null`` on a unix system if you don't want to save the output.
 
     epochs: int
         The number of epochs for which you want to train the model.
@@ -480,8 +480,8 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         loaded during the transfer learning process from the supplied starting model. The rest of the layers will be
         initialized from scratch.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -495,8 +495,8 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
         trainable during the transfer learning process. The rest are frozen at the values loaded from the previous
         model.
 
-        The orders of the bools correspond to the Following Layer numbers [2,5,8,9,10,13,15,17] in GaMorNet. Please see
-        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details The first five layers are the convolutional
+        The order of the bools correspond to the following layer numbers [2, 5, 8, 9, 10, 13, 15, 17] in GaMorNet. Please see
+        Figure 4 and Table 2 of Ghosh et. al. (2020) to get more details. The first five layers are the convolutional
         layers and the last three are the fully connected layers.
 
         This parameter can also take the following special values which are handy when you are using our models to
@@ -510,16 +510,16 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
 
         Additionally, this parameter can take the following special values
 
-        * ``SDSS_sim`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
-        * ``SDSS_tl`` -- Downloads and uses GaMorNet models trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
-        * ``CANDELS_sim`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
-        * ``CANDELS_tl`` -- Downloads and uses GaMorNet models trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
+        * ``SDSS_sim`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations at z~0 from Ghosh et. al. (2020)
+        * ``SDSS_tl`` -- Downloads and uses the GaMorNet model trained on SDSS g-band simulations and real data at z~0 from Ghosh et. al. (2020)
+        * ``CANDELS_sim`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations at z~1 from Ghosh et. al. (2020)
+        * ``CANDELS_tl`` -- Downloads and uses the GaMorNet model trained on CANDELS H-band simulations and real data at z~1 from Ghosh et. al. (2020)
 
     files_save_path: str
         The full path to the location where files generated during the training process are to be saved. This
         includes the ``metrics.csv`` file as well as the trained model.
 
-        Set this to `/dev/null` on a unix system if you don't want to save the output.
+        Set this to ``/dev/null`` on a unix system if you don't want to save the output.
 
     epochs: int
         The number of epochs for which you want to train the model.
@@ -553,7 +553,7 @@ def gamornet_tl_keras(training_imgs, training_labels, validation_imgs, validatio
 
     loss: allowed str
         The loss function to be used. If using the string option, you need to specify the name of
-        the loss functionThis can be set to be any loss available in ``keras.losses``
+        the loss function. This can be set to be any loss available in ``keras.losses``
 
     save_model: bool
         Whether you want to save the model in its final trained state.
