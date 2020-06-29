@@ -15,8 +15,8 @@
     :target: https://doi.org/10.3847/1538-4357/ab8a47
     :alt: DOI Link
 
-.. image:: https://img.shields.io/badge/arXiv-Coming%20Soon-blue
-    :target: https://github.com/aritraghsh09/GaMorNet/
+.. image:: https://img.shields.io/badge/arXiv-2006.14639-blue
+    :target: http://arxiv.org/abs/2006.14639
     :alt: arXiv
 
 
