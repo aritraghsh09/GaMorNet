@@ -51,7 +51,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - increased the flushing time for the gamornet_predict_tflearn function progressbar
 - implemented single version and author sourcing. (both are sourced from __init__.py to setup.py
 
-## [0.1] - 2020-05-12
+## [0.2.3] - 2020-05-19
 ### Added
 - Initial Release of gamornet-cpu
 - Version starts with 0.2.3 to match up with the GPU Version of GaMorNet
