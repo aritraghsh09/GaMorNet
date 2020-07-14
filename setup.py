@@ -31,9 +31,9 @@ setuptools.setup(
 	install_requires=[
 		"tensorflow-cpu ~=1.13",
 		"tflearn ~=0.3",
-		"keras ~=2.2",
-		"wget >=3.2",
-		"numpy >=1.16",
+		"keras ~=2.2,<2.4",
+		"wget ~=3.2",
+		"numpy ~=1.16",
 		"progressbar2",
 	],
 )
