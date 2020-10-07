@@ -3,6 +3,16 @@
 API Documentation
 =================
 
+.. error::
+   6th Oct. 2020: Yale Astronomy's public FTP server is temporarily down. Yale
+   ITS is working to restore the service as soon as possible and it should 
+   be back online by Oct 17th. 
+
+   During this time, tutorials that depend on pulling files from the server will
+   not work as expected. Besides, in your code, if you are trying to use our 
+   trained models, this will fail as well. We apologize for this convenience. If your work is urgent, please reach out
+   to use and we can make the trained models available to you via Google Drive. 
+   
 Both the Keras and TFLearn modules have similarly named functions with very similar parameters. Use the ``_predict_`` functions to perform
 predictions using our trained models or a model you trained from scratch. Use the ``_train_`` functions to train a model from scratch. Use the 
 ``_tl_`` functions to perform transfer learning on a previously trained model -- this can be our pre-trained models or a model that you trained.
