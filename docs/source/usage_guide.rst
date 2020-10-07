@@ -167,14 +167,14 @@ To turn GaMorNet's output probability values into class predictions, we use prob
 FTP Server
 ^^^^^^^^^^^
 .. error::
-   6th Oct. 2020: Yale Astronomy's public FTP server is temporarily down. Yale
+   **6th Oct. 2020**: Yale Astronomy's public FTP server is temporarily down. Yale
    ITS is working to restore the service as soon as possible and it should 
    be back online by Oct 17th. 
 
    During this time, tutorials that depend on pulling files from the server will
    not work as expected. Besides, in your code, if you are trying to use our 
-   trained models, this will fail as well. We apologize for this convenience. If your work is urgent, please reach out
-   to use and we can make the trained models available to you via Google Drive. 
+   trained models, this will fail as well. We apologize for this inconvenience. If your work is urgent, please reach out
+   to us and we can make the trained models available to you via Google Drive. 
 
 
 All components of the public data release are hosted on the Yale Astronomy FTP server ``ftp.astro.yale.edu``. There are multiple ways you can access the FTP server
