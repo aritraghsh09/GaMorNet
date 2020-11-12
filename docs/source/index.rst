@@ -10,14 +10,18 @@ About GaMorNet
 ==============
 
 .. error::
-   **6th Oct. 2020**: Yale Astronomy's public FTP server is temporarily down. Yale
+   **11th Nov. 2020**: Yale Astronomy's public FTP server is temporarily down. Yale
    ITS is working to restore the service as soon as possible and it should 
-   be back online by Oct 17th. 
+   be back online by the end of November. 
 
    During this time, tutorials that depend on pulling files from the server will
    not work as expected. Besides, in your code, if you are trying to use our 
-   trained models, this will fail as well. We apologize for this inconvenience. If your work is urgent, please reach out
-   to us and we can make the trained models available to you via Google Drive. 
+   trained models, this will fail as well. We apologize for this inconvenience. 
+   
+   In the interim, all our trained models are available via 
+   `Google Drive <https://drive.google.com/drive/folders/15YD88wMKZF6LRrBVIoPmNYhMLQuCYDa8?usp=sharing>`_ . 
+   Please download the model you need and use the full path to the model in the `model_load_path` parameter.
+   Have a look at the :ref:`api_docs` for more information and please contact us in case you run into issues.
 
 The Galaxy Morphology Network (GaMorNet) is a convolutional neural network that can classify galaxies as being disk-dominated, bulge-dominated or indeterminate based on their bulge to total light ratio. GaMorNet doesn't need a large amount of training data and can work across different data-sets. For more details about GaMorNet's design, how it was trained etc., please refer to :ref:`pub_and_other_data`.  
 
