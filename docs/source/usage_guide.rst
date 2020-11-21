@@ -188,6 +188,11 @@ Open Finder, and then choose Go :math:`\Rightarrow` Connect to Server (or comman
 
 Thereafter, navigate to the appropriate subdirectory. 
 
+.. _google_drive:
+
+Google Drive
+^^^^^^^^^^^^^
+A tarball of all the data products on the public :ref:`ftp_server` is now also available via `Google Drive <https://drive.google.com/file/d/1yIuCe_CcxzOLsNAPR5H40MPH-tbvpBJb/view?usp=sharing>`_
 
 .. _pred_tables:
 
