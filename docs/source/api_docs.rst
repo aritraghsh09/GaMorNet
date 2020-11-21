@@ -2,22 +2,6 @@
 
 API Documentation
 =================
-.. error::
-   **11th Nov. 2020**: Yale Astronomy's public FTP server is temporarily down. Yale
-   ITS is working to restore the service as soon as possible and it should 
-   be back online by the end of November. 
-
-   During this time, tutorials that depend on pulling files from the server will
-   not work as expected. Besides, in your code, if you are trying to use our 
-   trained models, this will fail as well. We apologize for this inconvenience. 
-   
-   In the interim, all our trained models are available via 
-   `Google Drive <https://drive.google.com/drive/folders/15YD88wMKZF6LRrBVIoPmNYhMLQuCYDa8?usp=sharing>`_. 
-   This has the same file structure as the FTP server.
-   Please download the model you need and use the full path to the model in the ``model_load_path`` parameter.
-   Have a look at the :ref:`api_docs` for more information and please contact us in case you run into issues.
-
-
 Both the Keras and TFLearn modules have similarly named functions with very similar parameters. Use the ``_predict_`` functions to perform
 predictions using our trained models or a model you trained from scratch. Use the ``_train_`` functions to train a model from scratch. Use the 
 ``_tl_`` functions to perform transfer learning on a previously trained model -- this can be our pre-trained models or a model that you trained.

@@ -2,21 +2,6 @@
 
 Tutorials
 =========
-.. error::
-   **11th Nov. 2020**: Yale Astronomy's public FTP server is temporarily down. Yale
-   ITS is working to restore the service as soon as possible and it should 
-   be back online by the end of November. 
-
-   During this time, tutorials that depend on pulling files from the server will
-   not work as expected. Besides, in your code, if you are trying to use our 
-   trained models, this will fail as well. We apologize for this inconvenience. 
-   
-   In the interim, all our trained models are available via 
-   `Google Drive <https://drive.google.com/drive/folders/15YD88wMKZF6LRrBVIoPmNYhMLQuCYDa8?usp=sharing>`_. 
-   This has the same file structure as the FTP server.
-   Please download the model you need and use the full path to the model in the ``model_load_path`` parameter.
-   Have a look at the :ref:`api_docs` for more information and please contact us in case you run into issues.
-
 
 We have created the following tutorials to get you quickly started with using GaMorNet. To look into the details of each GaMorNet function used in these tutorials, please look at the :ref:`api_docs`.
 
