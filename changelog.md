@@ -8,12 +8,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Added
 
 ### Changed
-- Changed setup.py to force h5py installation of <3.0. 
-This is because of this error -- https://github.com/keras-team/keras/issues/14265
-
-### Removed
 
 ### Fixed
+
+
+## [0.4.3] -- 2021-07-14
+
+### Changed
+- Changed setup.py to force h5py installation of <3.0. 
+This is because of this error -- https://github.com/keras-team/keras/issues/14265
 
 ## [0.4.2] -- 2020-07-14
 
