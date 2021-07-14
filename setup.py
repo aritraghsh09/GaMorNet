@@ -36,7 +36,7 @@ setuptools.setup(
 		"wget ~=3.2",
 		"numpy ~=1.16",
 		"progressbar2",
-		"h5py < 3.0.0",
+		"h5py <3.0.0",
 	],
 )
 
