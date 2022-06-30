@@ -3,6 +3,11 @@
 Public Data Release Handbook
 =============================
 
+.. note::
+   A tarball of all the public data products is now also available via `Google Drive <https://drive.google.com/file/d/1yIuCe_CcxzOLsNAPR5H40MPH-tbvpBJb/view?usp=sharing>`_. 
+   
+   The folder structure is the same as that of the FTP server mentioned below. 
+
 If you are looking for information about the various ways you can use GaMorNet (running on a CPU v/s GPU v/s the cloud) or installation instructions, please have a look at :ref:`getting_started`. This section summarizes different aspects of the public data release and provides some advice on the applicability of GaMorNet for various tasks. 
 
 
